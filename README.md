@@ -1,4 +1,18 @@
-# Simple Registration Example
+# Rezervare Cabana
+
+
+Aplicatia (va) contine :
+* Registration(Sign-up)
+* Log-in
+* Create ad(Owner)
+* Respond review(Owner)
+* Reserve the place(Client)
+* Cancel order(Client)
+* Search function by date and location(Client)
+* Log-out
+
+
+# Registration(Sign-up)
 A JavaFX Application demonstrating how to implement a simplistic approach of a registration use case using the following technologies:
 * [Java 16](https://www.oracle.com/java/technologies/javase-downloads.html)
 * [JavaFX](https://openjfx.io/openjfx-docs/) (as GUI)
