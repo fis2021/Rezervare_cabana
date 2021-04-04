@@ -53,4 +53,4 @@ To start and run the project use one of the following commands:
 * `mvn javafx:run` or `./mvnw javafx:run` (run the `run` goal of the `javafx` maven plugin)
 
 
-To understand better how to set up a project using JavaFX 11+ and [Maven](https://openjfx.io/openjfx-docs/#maven)
+To understand better how to set up a project using JavaFX 11+ and [Maven](https://openjfx.io/openjfx-docs/#maven), please check the [official OpenJFX documentation](https://openjfx.io/). 
