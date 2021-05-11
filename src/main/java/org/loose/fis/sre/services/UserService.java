@@ -1,5 +1,9 @@
 package org.loose.fis.sre.services;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
@@ -58,6 +62,8 @@ public class UserService {
                 throw new USERAlreadyExistsException(username);
         }
     }
+
+
 
     private static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
