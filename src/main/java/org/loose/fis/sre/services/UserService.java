@@ -3,6 +3,9 @@ package org.loose.fis.sre.services;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.sre.exceptions.USERAlreadyExistsException;
+import org.loose.fis.sre.exceptions.NoRoleSelectedException;
+import org.loose.fis.sre.exceptions.NoPasswordException;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -24,15 +27,35 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
-        checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role));
+    public static void addUser(String username, String password, String role)
+            throws UsernameAlreadyExistsException, NoRoleSelectedException, NoPasswordException
+    {
+        if ((!Objects.equals(role, "Client"))&&(!Objects.equals(role, "Owner")))
+            throw new NoRoleSelectedException(username);
+        else if (password.equals(""))
+            throw new NoPasswordException(username) ;
+        else
+        {
+            checkUserDoesNotAlreadyExist(username);
+            userRepository.insert(new User(username, encodePassword(username, password), role));
+        }
+
     }
 
     protected static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
+        }
+    }
+
+    protected static void checkUSERDoesNotAlreadyExist(String username, String password, String role ) throws USERAlreadyExistsException {
+        for (User user : userRepository.find()) {
+            if ( (Objects.equals(encodePassword(username, password), user.getPassword()))
+                  && (Objects.equals(username, user.getUsername()))
+                  && (Objects.equals(role, user.getRole()))
+               )
+                throw new USERAlreadyExistsException(username);
         }
     }
 
