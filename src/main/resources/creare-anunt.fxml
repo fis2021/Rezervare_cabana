@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" prefHeight="800" prefWidth="1200"
+          vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal"
+          fx:controller="org.loose.fis.sre.controllers.CreateAdController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+    </padding>
+    <Text id="title-text" text="Home" style="-fx-font-size : 24" GridPane.columnIndex="0" GridPane.columnSpan="2"
+          GridPane.rowIndex="0"/>
+
+    <Label text="Nume proprietate:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+    <TextField fx:id="nume_proprietate" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label text="Locatie:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+
+    <TextField fx:id="locatie" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <Label text="Pret:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+    <TextField fx:id="pret" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Text fx:id="creatingAdMessage" GridPane.halignment="center" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+    <HBox alignment="bottom_right" style="-fx-font-size: 24" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button onAction="#handleCreateAdAction" text="Create ad"/>
+    </HBox>
+
+</GridPane>
