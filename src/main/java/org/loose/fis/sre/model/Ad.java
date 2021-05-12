@@ -17,6 +17,9 @@ public class Ad
         this.pret = pret;
     }
 
+    public Ad() {
+    }
+
     public String getNume_proprietate() {
         return nume_proprietate;
     }
