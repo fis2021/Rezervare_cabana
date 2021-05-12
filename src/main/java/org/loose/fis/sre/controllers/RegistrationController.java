@@ -56,13 +56,14 @@ public class RegistrationController  extends UserService{
         }
     }
 
-    public void switchStage_to_creare_anunt() throws IOException {
+    @FXML
+    public void switchStage_to_Owner_Home() throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader();
 
-        Pane root = fxmlLoader.load(getClass().getClassLoader().getResource("creare-anunt.fxml")) ;
-        stage.setTitle("Creare anunt");
-        stage.setScene(new Scene(root, 500, 275));
+        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("OwnerHome.fxml")) ;
+        stage.setTitle("Owner Home");
+        stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }
 
@@ -88,7 +89,7 @@ public class RegistrationController  extends UserService{
             {
 
                 loginMessage.setText("Login successfull!");
-                switchStage_to_creare_anunt();
+                switchStage_to_Owner_Home();
             }
 
         //}
