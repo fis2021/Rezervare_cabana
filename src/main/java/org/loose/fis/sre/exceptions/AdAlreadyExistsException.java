@@ -6,7 +6,7 @@ public class AdAlreadyExistsException extends Exception
 
     public AdAlreadyExistsException(String username)
     {
-        super(String.format("Account with the username %s doesn't exist!", username));
+        super("Ad already exists");
         this.username = username;
     }
 

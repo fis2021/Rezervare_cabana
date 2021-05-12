@@ -28,7 +28,7 @@
 
     <TextField fx:id="pret" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="8" />
+    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="9" />
     <HBox alignment="bottom_right" spacing="10" style="-fx-font-size: 24" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button onAction="#handleCreateAdAction" text="Create ad" />
     </HBox>

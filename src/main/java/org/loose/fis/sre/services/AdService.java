@@ -4,7 +4,7 @@ import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
-import org.loose.fis.sre.model.User;
+
 
 import java.util.Objects;
 
