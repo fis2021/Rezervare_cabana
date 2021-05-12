@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<GridPane alignment="TOP_LEFT" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.OwnerHomeController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+    <Text id="title-text" style="-fx-font-size : 18" text="Anunturile mele de inchiriere :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+
+    <TableView fx:id="tableView" GridPane.rowSpan="2" GridPane.rowIndex="1" >
+    <columns>
+        <TableColumn text="#" prefWidth="25">
+        </TableColumn>
+        <TableColumn text="Nume Proprietate" prefWidth="200">
+        </TableColumn>
+        <TableColumn text="Locatie" prefWidth="100">
+        </TableColumn>
+        <TableColumn text="Pret" prefWidth="100">
+        </TableColumn>
+    </columns>
+    </TableView>
+
+    <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <Button onMouseClicked="#handleCreateAdAction" style="-fx-font: 18 Calibri" text="Create Ad" prefWidth="120" textAlignment="CENTER"/>
+    </HBox>
+
+    <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Button onMouseClicked="#handleRespondReviewAdAction" text="Respond Review" prefWidth="120" textAlignment="CENTER"/>
+    </HBox>
+
+</GridPane>
