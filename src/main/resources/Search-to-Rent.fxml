@@ -18,19 +18,6 @@
     </padding>
     <Text id="title-text" style="-fx-font-size : 18" text="Search :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <TableView fx:id="tableView" GridPane.rowSpan="2" GridPane.rowIndex="4" >
-        <columns>
-            <TableColumn text="#" prefWidth="25">
-            </TableColumn>
-            <TableColumn text="Nume Proprietate" prefWidth="200">
-            </TableColumn>
-            <TableColumn text="Locatie" prefWidth="100">
-            </TableColumn>
-            <TableColumn text="Pret" prefWidth="100">
-            </TableColumn>
-        </columns>
-    </TableView>
-
     <TextField fx:id="nume_proprietate" promptText="Nume Proprietate" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
     <TextField fx:id="locatie" promptText="Locatie" GridPane.columnIndex="0" GridPane.rowIndex="2" />
@@ -47,6 +34,24 @@
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
         <Button onMouseClicked="#handleSearchByPrice" text="Search by Price" prefWidth="150" textAlignment="CENTER"/>
+    </HBox>
+
+
+    <TableView fx:id="tableView" GridPane.rowSpan="2" GridPane.rowIndex="4" >
+        <columns>
+            <TableColumn text="#" prefWidth="25">
+            </TableColumn>
+            <TableColumn text="Nume Proprietate" prefWidth="200">
+            </TableColumn>
+            <TableColumn text="Locatie" prefWidth="100">
+            </TableColumn>
+            <TableColumn text="Pret" prefWidth="100">
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Button onMouseClicked="#handleRentAction" text="Rent" prefWidth="100" textAlignment="CENTER"/>
     </HBox>
 
 </GridPane>

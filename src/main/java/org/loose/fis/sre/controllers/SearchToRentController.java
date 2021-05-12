@@ -30,6 +30,17 @@ public class SearchToRentController extends AdService
     @FXML
     private TextField pret;
 
+    public void switchStage_to_Rent() throws IOException
+    {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("Rent.fxml")) ;
+        stage.setTitle("Rental Process");
+        stage.setScene(new Scene(root, 500, 500));
+        stage.show();
+    }
+
     public void handleSearchByNameAction(MouseEvent mouseEvent) 
     {
         
@@ -43,5 +54,9 @@ public class SearchToRentController extends AdService
     public void handleSearchByPrice(MouseEvent mouseEvent) 
     {
         
+    }
+
+    public void handleRentAction(MouseEvent mouseEvent) throws IOException {
+        switchStage_to_Rent();
     }
 }
