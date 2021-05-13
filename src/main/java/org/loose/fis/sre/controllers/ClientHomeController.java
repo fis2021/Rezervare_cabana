@@ -35,7 +35,7 @@ public class ClientHomeController extends AdService implements Initializable {
 
         Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("Search-to-Rent.fxml")) ;
         stage.setTitle("Search to Rent");
-        stage.setScene(new Scene(root, 700, 700));
+        stage.setScene(new Scene(root, 850, 700));
         stage.show();
     }
 
@@ -50,6 +50,7 @@ public class ClientHomeController extends AdService implements Initializable {
         stage.show();
     }
 
+
     public void populateTable() {
         //System.out.println(rez.get(0).getLocatie());
         //getData();
@@ -57,7 +58,8 @@ public class ClientHomeController extends AdService implements Initializable {
         ObservableList<Integer> dat = tableView.getItems();
         for (int i = 0; i < rez.size(); i++)
         {
-            data.add(new Ad(rez.get(i).getNume_proprietate(),
+            data.add(new Ad(rez.get(i).getNume_proprietar(),
+                            rez.get(i).getNume_proprietate(),
                             rez.get(i).getLocatie(),
                             rez.get(i).getPret()
                     )

@@ -27,6 +27,7 @@ public class SearchToRentController extends AdService implements Initializable {
     public TableColumn Locatie;
     public TableColumn NumeProprietate;
     public TableColumn Pret;
+    public TableColumn NumeProprietar;
     @FXML
     private Text creatingAdMessage;
     @FXML
@@ -54,7 +55,8 @@ public class SearchToRentController extends AdService implements Initializable {
         ObservableList<Ad> data2 = tableView.getItems();
         //ObservableList<Integer> dat = tableView.getItems();
         for (int i = 0; i < rez.size(); i++) {
-            data2.add(new Ad(rez.get(i).getNume_proprietate(),
+            data2.add(new Ad(rez.get(i).getNume_proprietar(),
+                            rez.get(i).getNume_proprietate(),
                             rez.get(i).getLocatie(),
                             rez.get(i).getPret()
                     )
