@@ -1,8 +1,16 @@
 package org.loose.fis.sre.model;
 
-import org.dizitart.no2.objects.Id;
-
 import java.util.Objects;
+
+import org.dizitart.no2.IndexType;
+import org.dizitart.no2.objects.Id;
+import org.dizitart.no2.objects.Index;
+import org.dizitart.no2.objects.Indices;
+
+@Indices({
+        @Index(value = "full_name", type = IndexType.NonUnique),
+        @Index(value = "nume_proprietate", type = IndexType.NonUnique),
+})
 
 public class Renter
 {

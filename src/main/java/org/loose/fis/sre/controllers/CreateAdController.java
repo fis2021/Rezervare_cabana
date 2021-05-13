@@ -28,13 +28,26 @@ public class CreateAdController extends AdService
         nume_proprietar.setText(text) ;
     }
 
+    public boolean checkForEmptyFields()
+    {
+        if ((nume_proprietate.getText().equals(""))||(locatie.getText().equals(""))||(pret.getText().equals("")))
+            return true ;
+        return false ;
+    }
+
     @FXML
-    public void handleCreateAdAction() {
-        try {
-            AdService.addAd(nume_proprietar.getText(), nume_proprietate.getText(), locatie.getText(), pret.getText());
-            creatingAdMessage.setText("Ad created successfully!");
-        } catch (AdAlreadyExistsException e) {
-            creatingAdMessage.setText(e.getMessage());
+    public void handleCreateAdAction()
+    {
+        if (!checkForEmptyFields())
+        {
+            try {
+                AdService.addAd(nume_proprietar.getText(), nume_proprietate.getText(), locatie.getText(), pret.getText());
+                creatingAdMessage.setText("Ad created successfully!");
+            } catch (AdAlreadyExistsException e) {
+                creatingAdMessage.setText(e.getMessage());
+            }
         }
+        else
+            creatingAdMessage.setText("Error: There are some incomplete fields !");
     }
 }
