@@ -16,23 +16,27 @@
     </padding>
     <Text id="title-text" style="-fx-font-size : 24" text="Creating Ad" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <Label text="Nume proprietate:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label text="Nume proprietar:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="nume_proprietate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="nume_proprietar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label text="Locatie:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <Label text="Nume proprietate:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="locatie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="nume_proprietate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label text="Pret:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Locatie:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <TextField fx:id="pret" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="locatie" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="9" />
+    <Label text="Pret:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+
+    <TextField fx:id="pret" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="10" />
     <HBox alignment="bottom_right" spacing="10" style="-fx-font-size: 24" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button onAction="#handleCreateAdAction" text="Create ad" />
     </HBox>
 
-    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
 </GridPane>
