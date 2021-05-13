@@ -78,9 +78,18 @@ public class RegistrationController  extends UserService{
 
     public void switchStage_to_Client_Home() throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader();
+        //FXMLLoader fxmlLoader = new FXMLLoader();
 
-        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("ClientHome.fxml")) ;
+        //Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("ClientHome.fxml")) ;
+
+        //
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("ClientHome.fxml"));
+        Pane root = fxmlLoader.load();
+        ClientHomeController controller = fxmlLoader.getController() ;
+        controller.passClientNameText(usernameField.getText());
+        controller.populateTable();
+        //
+
         stage.setTitle("Client Home");
         stage.setScene(new Scene(root, 800, 500));
         stage.show();

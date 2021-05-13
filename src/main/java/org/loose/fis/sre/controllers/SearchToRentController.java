@@ -37,16 +37,32 @@ public class SearchToRentController extends AdService implements Initializable {
     @FXML
     private TextField pret;
 
+    public String ClientName ;
+
+
     //private int i = 1;
 
     public void switchStage_to_Rent() throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader();
+       // FXMLLoader fxmlLoader = new FXMLLoader();
 
-        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("Rent.fxml"));
+        //Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("Rent.fxml"));
+
+        //
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("Rent.fxml"));
+        Pane root = fxmlLoader.load();
+        RentController controller = fxmlLoader.getController() ;
+        controller.getClientNameText_as_Renter(this.ClientName);
+        //
+
         stage.setTitle("Rental Process");
         stage.setScene(new Scene(root, 500, 500));
         stage.show();
+    }
+
+    public void getClientNameText(String text)
+    {
+        this.ClientName = text ;
     }
 
     public void populateTable() {
@@ -117,7 +133,9 @@ public class SearchToRentController extends AdService implements Initializable {
 
     }
 
-    public void handleRentAction(MouseEvent mouseEvent) throws IOException {
+    public void handleRentAction(MouseEvent mouseEvent) throws IOException
+    {
+        //System.out.println(ClientName);
         select2();
         switchStage_to_Rent();
         //System.out.println(property_name);
@@ -126,7 +144,7 @@ public class SearchToRentController extends AdService implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        populateTable();
+        //populateTable();
 
     }
 }

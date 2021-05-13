@@ -24,16 +24,26 @@ public class ClientHomeController extends AdService implements Initializable {
     public TableView tableView;
     public TableColumn id;
     public TableColumn pret;
-    public TableColumn<Ad,String> locatie;
+    public TableColumn locatie;
     public TableColumn nume_proprietate;
+    public String ClientName ;
 
 
     public void switchStage_to_Search_to_Rent() throws IOException
     {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader();
+        //FXMLLoader fxmlLoader = new FXMLLoader();
 
-        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("Search-to-Rent.fxml")) ;
+        //Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("Search-to-Rent.fxml")) ;
+
+        //
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("Search-to-Rent.fxml"));
+        Pane root = fxmlLoader.load();
+        SearchToRentController controller = fxmlLoader.getController() ;
+        controller.getClientNameText(this.ClientName);
+        controller.populateTable();
+        //
+
         stage.setTitle("Search to Rent");
         stage.setScene(new Scene(root, 850, 700));
         stage.show();
@@ -50,6 +60,11 @@ public class ClientHomeController extends AdService implements Initializable {
         stage.show();
     }
 
+
+    public void passClientNameText(String text)
+    {
+        this.ClientName = text ;
+    }
 
     public void populateTable() {
         //System.out.println(rez.get(0).getLocatie());
@@ -89,7 +104,6 @@ public class ClientHomeController extends AdService implements Initializable {
         });
     }
 
-
     public void handleSearchToRentAction(MouseEvent mouseEvent) throws IOException
     {
         switchStage_to_Search_to_Rent();
@@ -110,7 +124,9 @@ public class ClientHomeController extends AdService implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        populateTable();
+        //populateTable();
     }
+
+
 }
 

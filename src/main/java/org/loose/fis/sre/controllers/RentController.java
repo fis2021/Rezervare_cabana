@@ -35,6 +35,10 @@ public class RentController extends RenterService implements Initializable
     @FXML
     private CheckBox over_18;
 
+    public void getClientNameText_as_Renter(String clientName)
+    {
+        full_name.setText(clientName);
+    }
 
     public void handleRentingAction()
     {
@@ -50,7 +54,9 @@ public class RentController extends RenterService implements Initializable
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         nume_proprietate.setText(initializareNume_proprietate());
     }
+
 }
