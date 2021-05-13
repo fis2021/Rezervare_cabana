@@ -8,13 +8,15 @@ public class Renter
 {
 
     @Id
+    private String nume_proprietate;
     private String full_name;
     private String email;
     private String phone;
     private boolean over_18;
 
-    public Renter(String full_name, String email, String phone, boolean over_18)
+    public Renter(String nume_proprietate, String full_name, String email, String phone, boolean over_18)
     {
+        this.nume_proprietate = nume_proprietate;
         this.full_name = full_name;
         this.email = email;
         this.phone = phone;
@@ -23,6 +25,14 @@ public class Renter
 
     public Renter() {
 
+    }
+
+    public String getNume_proprietate() {
+        return full_name;
+    }
+
+    public void setNume_proprietate(String nume_proprietate) {
+        this.nume_proprietate = nume_proprietate;
     }
 
     public String getFull_name() {
@@ -66,6 +76,7 @@ public class Renter
 
         Renter Renter = (Renter) o;
 
+        if (nume_proprietate != null ? !nume_proprietate.equals(Renter.nume_proprietate) : Renter.nume_proprietate != null) return false;
         if (full_name != null ? !full_name.equals(Renter.full_name) : Renter.full_name != null) return false;
         if (email != null ? !email.equals(Renter.email) : Renter.email != null) return false;
         if (phone != null ? !phone.equals(Renter.phone) : Renter.phone != null) return false;
