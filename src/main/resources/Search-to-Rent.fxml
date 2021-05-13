@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <GridPane alignment="TOP_LEFT" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.SearchToRentController">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

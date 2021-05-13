@@ -30,6 +30,8 @@ public class SearchToRentController extends AdService
     @FXML
     private TextField pret;
 
+    //private int i = 1;
+
     public void switchStage_to_Rent() throws IOException
     {
         Stage stage = new Stage();

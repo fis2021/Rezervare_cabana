@@ -31,7 +31,7 @@ public class OwnerHomeController
 
         Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("creare-anunt.fxml")) ;
         stage.setTitle("Creare anunt");
-        stage.setScene(new Scene(root, 500, 275));
+        stage.setScene(new Scene(root, 500, 400));
         stage.show();
     }
 
