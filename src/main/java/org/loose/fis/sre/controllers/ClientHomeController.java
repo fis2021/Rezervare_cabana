@@ -61,9 +61,18 @@ public class ClientHomeController extends AdService implements Initializable {
     public void switchStage_to_Leave_Review() throws IOException
     {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader();
+        //FXMLLoader fxmlLoader = new FXMLLoader();
 
-        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("LeaveReview.fxml")) ;
+        //Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("LeaveReview.fxml")) ;
+
+        //
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("LeaveReview.fxml"));
+        Pane root = fxmlLoader.load();
+        LeaveReviewController controller = fxmlLoader.getController() ;
+        controller.getAuthorNameText(this.ClientName);
+        //controller.populateTable();
+        //
+
         stage.setTitle("Write review");
         stage.setScene(new Scene(root, 500, 500));
         stage.show();
@@ -77,14 +86,6 @@ public class ClientHomeController extends AdService implements Initializable {
 
     //
     private ObjectRepository<Renter> RenterRepository = RenterService.getDatabase();
-
-    public static void initDatabase() {
-        //Nitrite database = Nitrite.builder()
-         //       .filePath(getPathToFile("renters.db").toFile())
-         //       .openOrCreate("test", "test");
-        //Nitrite database = (getPathToFile("renters.db").toFile());
-        //RenterRepository = database.getRepository(Renter.class);
-    }
 
     public List<Renter> results = RenterRepository.find(ObjectFilters.ALL).toList();
 
@@ -119,8 +120,6 @@ public class ClientHomeController extends AdService implements Initializable {
         {
             if ((results.get(j).getFull_name()).equals(this.ClientName))
             for (int i = 0; i < rez.size(); i++) {
-                //if(checkIfRentedPropertiesByName())
-                //checkIfRentedPropertiesByName();
                 if (((rez.get(i).getNume_proprietate()) != null)&&((rez.get(i).getNume_proprietate()).equals(results.get(j).getNume_proprietate())))
                 data.add(new Ad(rez.get(i).getNume_proprietar(),
                                 rez.get(i).getNume_proprietate(),

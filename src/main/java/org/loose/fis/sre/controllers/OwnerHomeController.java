@@ -52,6 +52,25 @@ public class OwnerHomeController extends AdService implements Initializable
         stage.show();
     }
 
+    public void switchStage_to_Leave_Review() throws IOException
+    {
+        Stage stage = new Stage();
+        //FXMLLoader fxmlLoader = new FXMLLoader();
+
+        //Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("LeaveReview.fxml")) ;
+
+        //
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("LeaveReview.fxml"));
+        Pane root = fxmlLoader.load();
+        LeaveReviewController controller = fxmlLoader.getController() ;
+        controller.getAuthorNameText(this.OwnerName);
+        //controller.populateTable();
+        //
+
+        stage.setTitle("Write review");
+        stage.setScene(new Scene(root, 500, 500));
+        stage.show();
+    }
 
     public void passOwnerNameText(String text)
     {
@@ -95,7 +114,8 @@ public class OwnerHomeController extends AdService implements Initializable
         switchStage_to_creare_anunt();
     }
 
-    public void handleRespondReviewAdAction(MouseEvent mouseEvent) {
+    public void handleRespondReviewAdAction(MouseEvent mouseEvent) throws IOException {
+        switchStage_to_Leave_Review();
     }
 
     @Override
