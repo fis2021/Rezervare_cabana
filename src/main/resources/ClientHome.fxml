@@ -23,6 +23,10 @@
         <columns>
             <TableColumn fx:id="id" text="#" prefWidth="25">
             </TableColumn>
+            <TableColumn fx:id="nume_proprietar" text="Nume Proprietar" prefWidth="150">
+                <cellValueFactory><PropertyValueFactory property="nume_proprietar" />
+                </cellValueFactory>
+            </TableColumn>
             <TableColumn fx:id="nume_proprietate" text="Nume Proprietate" prefWidth="200">
                 <cellValueFactory><PropertyValueFactory property="nume_proprietate" />
                 </cellValueFactory>

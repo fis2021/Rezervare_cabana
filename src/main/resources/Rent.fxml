@@ -18,20 +18,22 @@
     </padding>
     <Text id="title-text" style="-fx-font-size : 16" text="Fill the following details to complete the rental process :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <TextField fx:id="full_name" promptText="Your Full Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="nume_proprietate" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="email" promptText="Email adress" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="full_name" promptText="Your Full Name" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="phone" promptText="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <TextField fx:id="email" promptText="Email adress" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <Label text="Over 18" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-    <CheckBox fx:id="over_18" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="phone" promptText="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-    <Label text="Select date :" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Label text="Over 18" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <CheckBox fx:id="over_18" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-    <Text fx:id="rentingMessage" GridPane.halignment="center" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-    <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="0" GridPane.rowIndex="6">
+    <Label text="Select date :" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+    <Text fx:id="rentingMessage" GridPane.halignment="center" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+    <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="0" GridPane.rowIndex="7">
         <Button onMouseClicked="#handleRentingAction" style="-fx-font: 20 Calibri" text="Rent" prefWidth="100" textAlignment="CENTER"/>
     </HBox>
 
