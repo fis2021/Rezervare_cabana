@@ -20,7 +20,7 @@
     </padding>
     <Text id="title-text" style="-fx-font-size : 18" text="Write Review :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <TextField fx:id="nume_proprietate" promptText="Property name" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="Nume_proprietate" promptText="Property name" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
     <TextField fx:id="numeAutor" promptText="Author name" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
 

@@ -137,6 +137,7 @@ public class SearchToRentController extends AdService implements Initializable {
     public void handleRentAction(MouseEvent mouseEvent) throws IOException
     {
         //System.out.println(ClientName);
+
         select2();
         switchStage_to_Rent();
         //System.out.println(property_name);

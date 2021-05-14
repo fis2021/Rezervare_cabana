@@ -30,7 +30,7 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class ClientHomeController extends AdService implements Initializable {
 
-    public TableView tableView;
+    public TableView<Ad> tableView;
     public TableColumn id;
     public TableColumn pret;
     public TableColumn locatie;
@@ -70,6 +70,7 @@ public class ClientHomeController extends AdService implements Initializable {
         Pane root = fxmlLoader.load();
         LeaveReviewController controller = fxmlLoader.getController() ;
         controller.getAuthorNameText(this.ClientName);
+        controller.setNumeProprietateText(property_name);
         //controller.populateTable();
         //
 
@@ -152,6 +153,14 @@ public class ClientHomeController extends AdService implements Initializable {
         });
     }
 
+    public static String property_name ;
+    public void select()
+    {
+        Ad ad = tableView.getSelectionModel().getSelectedItem();
+
+        property_name = ad.getNume_proprietate();
+    }
+
     public void handleSearchToRentAction(MouseEvent mouseEvent) throws IOException
     {
         switchStage_to_Search_to_Rent();
@@ -159,7 +168,8 @@ public class ClientHomeController extends AdService implements Initializable {
 
     public void handleLeaveReviewAction(MouseEvent mouseEvent) throws IOException
     {
-
+        select();
+        //System.out.println(property_name);
         switchStage_to_Leave_Review();
 
     }
