@@ -142,10 +142,17 @@ public class SearchToRentController extends AdService implements Initializable {
         //System.out.println(property_name);
     }
 
+    public void handleViewReviewsAction(MouseEvent mouseEvent)
+    {
+        select2();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         //populateTable();
 
     }
+
+
 }

@@ -63,6 +63,10 @@
     </TableView>
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Button onMouseClicked="#handleViewReviewsAction" text="View Reviews" prefWidth="100" textAlignment="CENTER"/>
+    </HBox>
+
+    <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button onMouseClicked="#handleRentAction" text="Rent" prefWidth="100" textAlignment="CENTER"/>
     </HBox>
 
