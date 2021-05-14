@@ -1,5 +1,7 @@
 package org.loose.fis.sre.services;
 
+import org.dizitart.no2.IndexOptions;
+import org.dizitart.no2.IndexType;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectFilter;
@@ -22,16 +24,16 @@ public class AdService
     public static void initDatabase()
     {
         Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile("places-to-rent.db").toFile())
+                .filePath(getPathToFile("places-to-rent2.db").toFile())
                 .openOrCreate("test", "test");
 
         AdRepository = database.getRepository(Ad.class);
     }
 
 
-    public static void addAd(String nume_proprietate, String locatie, String pret) throws AdAlreadyExistsException {
+    public static void addAd(String nume_proprietar, String nume_proprietate, String locatie, String pret) throws AdAlreadyExistsException {
         checkAdDoesNotAlreadyExist(nume_proprietate);
-        AdRepository.insert(new Ad(nume_proprietate, locatie, pret));
+        AdRepository.insert(new Ad(nume_proprietar, nume_proprietate, locatie, pret));
     }
 
     protected static void checkAdDoesNotAlreadyExist(String nume_proprietate) throws AdAlreadyExistsException {

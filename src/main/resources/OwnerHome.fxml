@@ -11,6 +11,7 @@
 
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <GridPane alignment="TOP_LEFT" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.OwnerHomeController">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -18,16 +19,22 @@
     <Text id="title-text" style="-fx-font-size : 18" text="Anunturile mele de inchiriere :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
     <TableView fx:id="tableView" GridPane.rowSpan="2" GridPane.rowIndex="1" >
-    <columns>
-        <TableColumn text="#" prefWidth="25">
-        </TableColumn>
-        <TableColumn text="Nume Proprietate" prefWidth="200">
-        </TableColumn>
-        <TableColumn text="Locatie" prefWidth="100">
-        </TableColumn>
-        <TableColumn text="Pret" prefWidth="100">
-        </TableColumn>
-    </columns>
+        <columns>
+            <TableColumn fx:id="id" text="#" prefWidth="25">
+            </TableColumn>
+            <TableColumn fx:id="nume_proprietate" text="Nume Proprietate" prefWidth="200">
+                <cellValueFactory><PropertyValueFactory property="nume_proprietate" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="locatie" text="Locatie" prefWidth="100">
+                <cellValueFactory><PropertyValueFactory property="locatie" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="pret" text="Pret" prefWidth="100">
+                <cellValueFactory><PropertyValueFactory property="pret" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
     </TableView>
 
     <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="1" GridPane.rowIndex="0">
