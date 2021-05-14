@@ -16,6 +16,7 @@ import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
 import org.loose.fis.sre.services.AdService;
 import org.loose.fis.sre.services.UserService;
+import org.loose.fis.sre.services.RenterService;
 
 import java.io.IOException;
 import java.net.URL;

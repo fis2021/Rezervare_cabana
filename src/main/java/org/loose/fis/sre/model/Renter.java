@@ -36,7 +36,7 @@ public class Renter
     }
 
     public String getNume_proprietate() {
-        return full_name;
+        return nume_proprietate;
     }
 
     public void setNume_proprietate(String nume_proprietate) {

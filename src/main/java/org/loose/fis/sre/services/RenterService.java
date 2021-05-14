@@ -3,13 +3,9 @@ package org.loose.fis.sre.services;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.controllers.SearchToRentController;
-import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.exceptions.RenterAlreadyExistsException;
-import org.loose.fis.sre.model.Ad;
-import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.model.Renter;
 
-import java.awt.*;
 import java.util.Objects;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
@@ -19,14 +15,19 @@ public class RenterService extends SearchToRentController {
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile("renters.db").toFile())
+                .filePath(getPathToFile("renters2.db").toFile())
                 .openOrCreate("test", "test");
 
         RenterRepository = database.getRepository(Renter.class);
     }
 
+    public static ObjectRepository<Renter> getDatabase()
+    {
+        return RenterRepository;
+    }
+
     public static void addRenter(String nume_proprietate, String full_name, String email, String phone, boolean over_18) throws RenterAlreadyExistsException {
-        checkRenterDoesNotAlreadyExist(full_name);
+        //checkRenterDoesNotAlreadyExist(full_name);
         RenterRepository.insert(new Renter(nume_proprietate, full_name, email, phone, over_18));
     }
 
@@ -37,6 +38,7 @@ public class RenterService extends SearchToRentController {
         }
     }
 
+    //public List<Renter> results = RenterRepository.find(ObjectFilters.ALL).toList();
     public String initializareNume_proprietate()
     {
         //System.out.println(property_name);

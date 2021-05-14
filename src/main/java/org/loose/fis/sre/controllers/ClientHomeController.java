@@ -12,12 +12,21 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.sre.model.Ad;
+import org.loose.fis.sre.model.Renter;
 import org.loose.fis.sre.services.AdService;
+import org.loose.fis.sre.services.RenterService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
+
+import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class ClientHomeController extends AdService implements Initializable {
 
@@ -66,22 +75,62 @@ public class ClientHomeController extends AdService implements Initializable {
         this.ClientName = text ;
     }
 
+    //
+    private ObjectRepository<Renter> RenterRepository = RenterService.getDatabase();
+
+    public static void initDatabase() {
+        //Nitrite database = Nitrite.builder()
+         //       .filePath(getPathToFile("renters.db").toFile())
+         //       .openOrCreate("test", "test");
+        //Nitrite database = (getPathToFile("renters.db").toFile());
+        //RenterRepository = database.getRepository(Renter.class);
+    }
+
+    public List<Renter> results = RenterRepository.find(ObjectFilters.ALL).toList();
+
+    public boolean checkIfRentedPropertiesByName()
+    {
+        //initDatabase();
+    /*    for (Renter renter : RenterRepository.find()) {
+            if (Objects.equals(this.ClientName, renter.getFull_name()))
+            {
+                System.out.println(renter.getFull_name());
+                return true;
+            }
+
+        }
+    */
+        for (int i = 0; i < results.size(); i++)
+        {
+            //System.out.println(results.get(i).getFull_name());
+            System.out.println(results.get(i).getNume_proprietate());
+        }
+
+        return false ;
+    }
+    //
+
     public void populateTable() {
         //System.out.println(rez.get(0).getLocatie());
         //getData();
         ObservableList<Ad> data = tableView.getItems();
-        ObservableList<Integer> dat = tableView.getItems();
-        for (int i = 0; i < rez.size(); i++)
+        //ObservableList<Integer> dat = tableView.getItems();
+        for (int j = 0 ; j < results.size() ; j ++ )
         {
-            data.add(new Ad(rez.get(i).getNume_proprietar(),
-                            rez.get(i).getNume_proprietate(),
-                            rez.get(i).getLocatie(),
-                            rez.get(i).getPret()
-                    )
-            );
-            //id.setText( String.valueOf(i+1) );
+            if ((results.get(j).getFull_name()).equals(this.ClientName))
+            for (int i = 0; i < rez.size(); i++) {
+                //if(checkIfRentedPropertiesByName())
+                //checkIfRentedPropertiesByName();
+                if (((rez.get(i).getNume_proprietate()) != null)&&((rez.get(i).getNume_proprietate()).equals(results.get(j).getNume_proprietate())))
+                data.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
+                        )
+                );
+                //id.setText( String.valueOf(i+1) );
+            }
         }
-
         /*
         id.setCellFactory(col -> {
             TableCell<Task, String> cell = new TableCell<>();
