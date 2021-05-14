@@ -43,13 +43,20 @@ public class OwnerHomeController extends AdService implements Initializable
         //
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("creare-anunt.fxml"));
         Pane root = fxmlLoader.load();
-        CreateAdController controller = fxmlLoader.getController() ;
-        controller.getOwnerNameText(this.OwnerName);
+        CreateAdController controller1 = fxmlLoader.getController() ;
+        controller1.getOwnerNameText(this.OwnerName);
+
+
         //
 
         stage.setTitle("Creare anunt");
         stage.setScene(new Scene(root, 500, 400));
-        stage.show();
+        stage.showAndWait();
+        if(controller1.checkIfAdCreated)
+        {
+            tableView.getItems().add(controller1.returnAdCreated());
+            tableView.refresh();
+        }
     }
 
     public void switchStage_to_Leave_Review() throws IOException
@@ -121,6 +128,7 @@ public class OwnerHomeController extends AdService implements Initializable
     public void handleCreateAdAction(MouseEvent mouseEvent) throws IOException
     {
         switchStage_to_creare_anunt();
+
     }
 
     public void handleRespondReviewAdAction(MouseEvent mouseEvent) throws IOException
