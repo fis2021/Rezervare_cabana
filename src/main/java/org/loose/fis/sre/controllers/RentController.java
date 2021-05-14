@@ -41,6 +41,21 @@ public class RentController extends RenterService implements Initializable {
 
     public boolean checkIfPropertyRented = false;
 
+    public boolean checkForEmptyFields()
+    {
+        if ((nume_proprietate.getText().equals(""))||(full_name.getText().equals(""))||(email.getText().equals("")))
+        {
+            rentingMessage.setText("Error: There are some incomplete fields !");
+            return true;
+        }
+        else if (over_18.isSelected()==false)
+        {
+            rentingMessage.setText("Error: You must be over 18 in order to rent a property !");
+            return true;
+        }
+        return false ;
+    }
+
     public void getClientNameText_as_Renter(String clientName) {
         full_name.setText(clientName);
     }
@@ -55,17 +70,22 @@ public class RentController extends RenterService implements Initializable {
 
     public void handleRentingAction()
     {
-        try
+        if (!checkForEmptyFields())
         {
-            RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected());
-            rentingMessage.setText("Rental process complete!");
-            checkIfPropertyRented = true ;
-            closeStageAfterRentButtonPressed();
+            try
+            {
+                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected());
+                rentingMessage.setText("Rental process complete!");
+                checkIfPropertyRented = true ;
+                closeStageAfterRentButtonPressed();
+            }
+            catch (RenterAlreadyExistsException e)
+            {
+                rentingMessage.setText(e.getMessage());
+            }
         }
-        catch (RenterAlreadyExistsException e)
-        {
-            rentingMessage.setText(e.getMessage());
-        }
+        //else
+            //rentingMessage.setText("Error: There are some incomplete fields !");
     }
 
     @Override

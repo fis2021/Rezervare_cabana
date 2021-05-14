@@ -58,7 +58,7 @@ public class SearchToRentController extends AdService implements Initializable {
         //
 
         stage.setTitle("Rental Process");
-        stage.setScene(new Scene(root, 500, 500));
+        stage.setScene(new Scene(root, 650, 500));
         stage.showAndWait();
         checkIfPropertyRented2 = false ;
         if (controller.checkIfPropertyRented)
