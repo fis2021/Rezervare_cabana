@@ -41,7 +41,7 @@ public class ReviewsController extends ReviewService implements Initializable
     public TableColumn Nume;
 
 
-    public void populateTableReviews() {
+    public void populateTableReviews(String proprietate_cautata) {
         //System.out.println(rez.get(0).getLocatie());
         //getData();
         ObservableList<Review> data2 = table.getItems();
@@ -50,7 +50,7 @@ public class ReviewsController extends ReviewService implements Initializable
         {
             //if ((rez.get(j).getFull_name()).equals(this.ClientName))
                 for (int i = 0; i < reviewsList.size(); i++) {
-                    //if (((reviewsList.get(i).getNume_proprietate()) != null)&&((reviewsList.get(i).getNume_proprietate()).equals(results.get(j).getNume_proprietate())))
+                    if(reviewsList.get(i).getNume_proprietate().equals(proprietate_cautata))
                         data2.add(new Review(reviewsList.get(i).getNume_proprietate(),
                                             reviewsList.get(i).getNume_autor(),
                                             reviewsList.get(i).getText_review(),
@@ -72,6 +72,7 @@ public class ReviewsController extends ReviewService implements Initializable
             };
         });
          */
+
         final Callback<TableColumn<Review,String>, TableCell<Review,String>> WRAPPING_CELL_FACTORY =
                 new Callback<TableColumn<Review,String>, TableCell<Review,String>>() {
 
@@ -125,11 +126,11 @@ public class ReviewsController extends ReviewService implements Initializable
         });
     }
 
-
+/*
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         populateTableReviews();
     }
-
+*/
 }

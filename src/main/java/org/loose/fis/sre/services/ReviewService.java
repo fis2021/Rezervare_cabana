@@ -11,6 +11,7 @@ import org.dizitart.no2.objects.ObjectFilter;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.sre.controllers.ClientHomeController;
+import org.loose.fis.sre.controllers.OwnerHomeController;
 import org.loose.fis.sre.controllers.SearchToRentController;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
