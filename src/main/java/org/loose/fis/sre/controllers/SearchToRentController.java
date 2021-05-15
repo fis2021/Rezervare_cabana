@@ -194,7 +194,7 @@ public class SearchToRentController extends AdService implements Initializable {
         ObservableList<Ad> Ads = tableView.getItems();
         tableView.getItems().clear();
         for (int i = 0; i < rez.size(); i++) {
-            if(Integer.parseInt(rez.get(i).getPret())<=Integer.parseInt(pretField.getText())){
+            if(!rez.get(i).getPret().equals("")&&(Integer.parseInt(rez.get(i).getPret())<=Integer.parseInt(pretField.getText())) ){
                 Ads.add(new Ad(rez.get(i).getNume_proprietar(),
                                 rez.get(i).getNume_proprietate(),
                                 rez.get(i).getLocatie(),
@@ -250,8 +250,9 @@ public class SearchToRentController extends AdService implements Initializable {
         Pane root = fxmlLoader.load();
         ReviewsController controller = fxmlLoader.getController() ;
         controller.populateTableReviews(proprietate_cautata);
+        controller.Nume_proprietate.setText(proprietate_cautata);
         stage.setTitle("View Reviews");
-        stage.setScene(new Scene(root, 900 , 900));
+        stage.setScene(new Scene(root, 800 , 800));
         stage.show();
 
 
