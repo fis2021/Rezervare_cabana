@@ -3,7 +3,10 @@ package org.loose.fis.sre.model;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.Period;
 
+import org.apache.commons.lang3.builder.Diff;
 import org.dizitart.no2.IndexType;
 import org.dizitart.no2.objects.Id;
 import org.dizitart.no2.objects.Index;
@@ -25,11 +28,14 @@ public class Renter
     private boolean over_18;
     private String data_inceput;
     private String data_final;
+    private int pret_noapte;
+    private int nr_nopti;
+    private int pret_sejur;
 
     public Renter(){
         super();
     }
-    public Renter(String nume_proprietate, String full_name, String email, String phone, boolean over_18,String data_inceput,String data_final)
+    public Renter(String nume_proprietate, String full_name, String email, String phone, boolean over_18,String data_inceput,String data_final,int pret_noapte)
     {
         this.nume_proprietate = nume_proprietate;
         this.full_name = full_name;
@@ -38,9 +44,20 @@ public class Renter
         this.over_18= over_18;
         this.data_inceput= data_inceput;
         this.data_final= data_final;
+        this.pret_noapte=pret_noapte;
+        this.nr_nopti= Diff_date(data_inceput,data_final);
+        this.pret_sejur= nr_nopti*pret_noapte;
 
     }
 
+    public int Diff_date(String data_inceput,String data_final)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data1 = LocalDate.parse(data_inceput,formatter);
+        LocalDate data2 = LocalDate.parse(data_final,formatter);
+        Period diff = Period.between(data1,data2);
+        return diff.getDays();
+    }
 
     public String getNume_proprietate() {
         return nume_proprietate;
@@ -89,8 +106,18 @@ public class Renter
     public String getData_final() { return data_final;}
 
     public void setData_final(String data_final) { this.data_final=data_final;}
-    
-    
+
+    public void setPret_noapte(int pret_noapte) { this.pret_noapte=pret_noapte;}
+
+    public int getPret_noapte() { return pret_noapte;}
+
+    public void setPret_sejur(int pret_sejur) { this.pret_sejur=pret_sejur;}
+
+    public int getPret_sejur() { return pret_sejur; }
+
+    public void setNr_nopti(int nr_nopti) { this.nr_nopti = nr_nopti; }
+
+    public int getNr_nopti() { return nr_nopti;}
 
     @Override
     public boolean equals(Object o) {

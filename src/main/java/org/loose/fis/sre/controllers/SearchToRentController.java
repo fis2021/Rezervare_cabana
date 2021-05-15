@@ -136,6 +136,7 @@ public class SearchToRentController extends AdService implements Initializable {
     }
 */
     public static String property_name ;
+    public static String price_per_night ;
     public Ad[] returnAdRented = new Ad[rez.size()];
     private int i = 0 ;
     //Ad ad ;
@@ -145,11 +146,16 @@ public class SearchToRentController extends AdService implements Initializable {
         //property_name = ad.getNume_proprietate();
         Ad ad = tableView.getSelectionModel().getSelectedItem();
         property_name = ad.getNume_proprietate();
+        price_per_night=ad.getPret();
         returnAdRented[i++] = ad;
         //System.out.println(x);
 
         //return x ;
         //System.out.println(ad);
+    }
+    public int get_price_noapte(){
+        Ad ad= tableView.getSelectionModel().getSelectedItem();
+        return Integer.parseInt(ad.getPret());
     }
 
     public void handleSearchByNameAction(MouseEvent mouseEvent) 
