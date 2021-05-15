@@ -19,11 +19,15 @@
     </padding>
     <Text id="title-text" style="-fx-font-size : 18" text="Search :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <TextField fx:id="nume_proprietate" promptText="Nume Proprietate" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="nume_proprietatateField" promptText="Nume Proprietate" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="locatie" promptText="Locatie" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="locatieField" promptText="Locatie" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="pret" promptText="Pret Maxim" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <TextField fx:id="pretField" promptText="Pret Maxim" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+    <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <Button onMouseClicked="#ShowAll" style="-fx-font: 18 Calibri" text="Show all" prefWidth="150" textAlignment="CENTER"/>
+    </HBox>
 
     <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="1" GridPane.rowIndex="1">
         <Button onMouseClicked="#handleSearchByNameAction" style="-fx-font: 18 Calibri" text="Search by Name" prefWidth="150" textAlignment="CENTER"/>
