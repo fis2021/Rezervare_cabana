@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
 
-<GridPane alignment="TOP_LEFT" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RentController">
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.CheckBox?>
+<GridPane alignment="TOP_LEFT" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RentController">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
     <Text id="title-text" style="-fx-font-size : 16" text="Fill the following details to complete the rental process :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <TextField fx:id="nume_proprietate" editable="false" focusTraversable="false" mouseTransparent="true" prefWidth="300" promptText="Property Name" style="-fx-font-size : 14" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="nume_proprietate" promptText="Property Name" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="full_name" prefWidth="300" promptText="Your Full Name" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="full_name" promptText="Your Full Name" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="email" prefWidth="300" promptText="Email adress" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <TextField fx:id="email" promptText="Email adress" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <TextField fx:id="phone" prefWidth="300" promptText="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <TextField fx:id="phone" promptText="Phone Number" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
     <Label text="Over 18" GridPane.columnIndex="0" GridPane.rowIndex="5" />
     <CheckBox fx:id="over_18" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-    <Label text="Select date :" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-    <DatePicker fx:id="Date" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Label text="Selectati data inceputului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <DatePicker fx:id="data_inceput" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-    <Text fx:id="rentingMessage" GridPane.columnIndex="0" GridPane.halignment="center" GridPane.rowIndex="8" />
-    <HBox fx:id="RentButton" alignment="bottom_left" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="7">
-        <Button onMouseClicked="#handleRentingAction" prefWidth="100" style="-fx-font: 20 Calibri" text="Rent" textAlignment="CENTER" />
+    <Label text="Selectati data sfarsitului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+    <DatePicker fx:id="data_final" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+    <Text fx:id="rentingMessage" GridPane.halignment="center" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+    <HBox fx:id="RentButton" alignment="bottom_left" spacing="10"  GridPane.columnIndex="0" GridPane.rowIndex="9">
+        <Button onMouseClicked="#handleRentingAction" style="-fx-font: 20 Calibri" text="Rent" prefWidth="100" textAlignment="CENTER"/>
     </HBox>
-
 
 
 </GridPane>

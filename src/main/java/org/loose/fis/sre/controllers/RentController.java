@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.util.StringConverter;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.exceptions.NoPasswordException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
@@ -22,20 +21,16 @@ import org.loose.fis.sre.services.UserService;
 import org.loose.fis.sre.services.RenterService;
 
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 public class RentController extends RenterService implements Initializable {
     @FXML
     public TextField nume_proprietate;
     @FXML
     public HBox RentButton;
-    @FXML
-    public DatePicker Date;
     @FXML
     private Text rentingMessage;
     @FXML
@@ -46,6 +41,11 @@ public class RentController extends RenterService implements Initializable {
     private TextField phone;
     @FXML
     private CheckBox over_18;
+    @FXML
+    private DatePicker data_inceput;
+    @FXML
+    private DatePicker data_final;
+
 
     public boolean checkIfPropertyRented = false;
 
@@ -76,14 +76,13 @@ public class RentController extends RenterService implements Initializable {
         delay.play();
     }
 
-    public static DateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public void handleRentingAction()
     {
         if (!checkForEmptyFields())
         {
             try
             {
-                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected());
+                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected(),data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ,data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 rentingMessage.setText("Rental process complete!");
                 checkIfPropertyRented = true ;
                 closeStageAfterRentButtonPressed();
@@ -92,48 +91,15 @@ public class RentController extends RenterService implements Initializable {
             {
                 rentingMessage.setText(e.getMessage());
             }
-            //LocalDate data = Date.getValue();
-
-            //System.out.println(Date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-
         }
         //else
             //rentingMessage.setText("Error: There are some incomplete fields !");
-    }
-
-    public void convertDatePicker_Date_to_specified_format()
-    {
-        Date.setConverter(new StringConverter<LocalDate>() {
-            String pattern = "dd-MM-yyyy";
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-
-            {
-                Date.setPromptText(pattern.toLowerCase());
-            }
-
-            @Override public String toString(LocalDate date) {
-                if (date != null) {
-                    return dateFormatter.format(date);
-                } else {
-                    return "";
-                }
-            }
-
-            @Override public LocalDate fromString(String string) {
-                if (string != null && !string.isEmpty()) {
-                    return LocalDate.parse(string, dateFormatter);
-                } else {
-                    return null;
-                }
-            }
-        });
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         nume_proprietate.setText(initializareNume_proprietate());
-        convertDatePicker_Date_to_specified_format();
     }
 
 }
