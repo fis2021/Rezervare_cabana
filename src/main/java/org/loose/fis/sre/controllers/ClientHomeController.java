@@ -1,6 +1,5 @@
 package org.loose.fis.sre.controllers;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.RemoveOptions;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.sre.model.Ad;
@@ -23,14 +22,14 @@ import org.loose.fis.sre.services.RenterService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
+import static org.dizitart.no2.objects.filters.ObjectFilters.and;
+import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 
 public class ClientHomeController extends AdService implements Initializable {
 
-    public TableView tableView;
+    public TableView<Ad> tableView;
     public TableColumn id;
     public TableColumn pret;
     public TableColumn locatie;
@@ -54,8 +53,18 @@ public class ClientHomeController extends AdService implements Initializable {
         //
 
         stage.setTitle("Search to Rent");
-        stage.setScene(new Scene(root, 850, 700));
-        stage.show();
+        stage.setScene(new Scene(root, 850, 900));
+        stage.showAndWait();
+        if(controller.checkIfPropertyRented2)
+        {
+            for (int i = 0 ; i < controller.returnAdRented.length ; i ++ )
+            {
+                if (controller.returnAdRented[i] != null)
+                tableView.getItems().add(controller.returnAdRented[i]);
+            }
+
+            tableView.refresh();
+        }
     }
 
     public void switchStage_to_Leave_Review() throws IOException
@@ -70,6 +79,7 @@ public class ClientHomeController extends AdService implements Initializable {
         Pane root = fxmlLoader.load();
         LeaveReviewController controller = fxmlLoader.getController() ;
         controller.getAuthorNameText(this.ClientName);
+        controller.setNumeProprietateText(property_name);
         //controller.populateTable();
         //
 
@@ -152,6 +162,15 @@ public class ClientHomeController extends AdService implements Initializable {
         });
     }
 
+    public static String property_name ;
+    //ObservableList<Ad> PropertiesRentedByClient = tableView.getItems();
+    public void select()
+    {
+        Ad ad = tableView.getSelectionModel().getSelectedItem();
+
+        property_name = ad.getNume_proprietate();
+    }
+
     public void handleSearchToRentAction(MouseEvent mouseEvent) throws IOException
     {
         switchStage_to_Search_to_Rent();
@@ -159,14 +178,20 @@ public class ClientHomeController extends AdService implements Initializable {
 
     public void handleLeaveReviewAction(MouseEvent mouseEvent) throws IOException
     {
-
+        select();
+        //System.out.println(property_name);
         switchStage_to_Leave_Review();
 
     }
 
     public void handleCancelRentalAction(MouseEvent mouseEvent)
     {
-
+        select();
+        RemoveOptions options = new RemoveOptions();
+        options.setJustOne(true);
+        RenterRepository.remove(and(eq("nume_proprietate", property_name),eq("full_name",this.ClientName)),options);
+        tableView.getItems().remove(tableView.getSelectionModel().getSelectedItem());
+        tableView.refresh();
     }
 
     @Override

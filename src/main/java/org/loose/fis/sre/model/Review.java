@@ -5,11 +5,13 @@ import org.dizitart.no2.objects.Id;
 import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Indices({
         @Index(value = "nume_autor", type = IndexType.NonUnique),
-        @Index(value = "nume_proprietate", type = IndexType.Unique),
+        @Index(value = "nume_proprietate", type = IndexType.NonUnique),
 })
 
 public class Review 
@@ -18,9 +20,11 @@ public class Review
     private String nume_proprietate;
     private String nume_autor;
     private String text_review;
-    private Date data;
+    private String data;
+    //DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    //dateFormat.format(data);
 
-    public Review(String nume_proprietate, String nume_autor, String text_review, Date data)
+    public Review(String nume_proprietate, String nume_autor, String text_review, String data)
     {
         
         this.nume_proprietate = nume_proprietate;
@@ -46,7 +50,7 @@ public class Review
         return nume_proprietate;
     }
 
-    public void setNume_proprietate(String nume_proprietate) {
+    public void setNume_Proprietate(String nume_proprietate) {
         this.nume_proprietate = nume_proprietate;
     }
 
@@ -58,11 +62,11 @@ public class Review
         this.text_review = text_review;
     }
 
-    public Date getData() {
+    public String getDate() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setDate(String data) {
         this.data = data;
     }
 

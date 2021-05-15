@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class OwnerHomeController extends AdService implements Initializable
 {
 
-    public TableView tableView;
+    public TableView<Ad> tableView;
     public TableColumn id;
     public TableColumn nume_proprietate;
     public TableColumn locatie;
@@ -43,13 +43,20 @@ public class OwnerHomeController extends AdService implements Initializable
         //
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("creare-anunt.fxml"));
         Pane root = fxmlLoader.load();
-        CreateAdController controller = fxmlLoader.getController() ;
-        controller.getOwnerNameText(this.OwnerName);
+        CreateAdController controller1 = fxmlLoader.getController() ;
+        controller1.getOwnerNameText(this.OwnerName);
+
+
         //
 
         stage.setTitle("Creare anunt");
         stage.setScene(new Scene(root, 500, 400));
-        stage.show();
+        stage.showAndWait();
+        if(controller1.checkIfAdCreated)
+        {
+            tableView.getItems().add(controller1.returnAdCreated());
+            tableView.refresh();
+        }
     }
 
     public void switchStage_to_Leave_Review() throws IOException
@@ -64,6 +71,7 @@ public class OwnerHomeController extends AdService implements Initializable
         Pane root = fxmlLoader.load();
         LeaveReviewController controller = fxmlLoader.getController() ;
         controller.getAuthorNameText(this.OwnerName);
+        controller.setNumeProprietateText(property_name);
         //controller.populateTable();
         //
 
@@ -83,7 +91,7 @@ public class OwnerHomeController extends AdService implements Initializable
         //System.out.println(rez.get(0).getLocatie());
         //getData();
         ObservableList<Ad> data = tableView.getItems();
-        ObservableList<Integer> dat = tableView.getItems();
+        //ObservableList<Integer> dat = tableView.getItems();
         for (int i = 0; i < rez.size(); i++)
         {
             if (((rez.get(i).getNume_proprietar()) != null)&&((rez.get(i).getNume_proprietar()).equals(this.OwnerName)))
@@ -109,12 +117,23 @@ public class OwnerHomeController extends AdService implements Initializable
         });
     }
 
+    public static String property_name ;
+    public void select()
+    {
+        Ad ad = tableView.getSelectionModel().getSelectedItem();
+
+        property_name = ad.getNume_proprietate();
+    }
+
     public void handleCreateAdAction(MouseEvent mouseEvent) throws IOException
     {
         switchStage_to_creare_anunt();
+
     }
 
-    public void handleRespondReviewAdAction(MouseEvent mouseEvent) throws IOException {
+    public void handleRespondReviewAdAction(MouseEvent mouseEvent) throws IOException
+    {
+        select();
         switchStage_to_Leave_Review();
     }
 
