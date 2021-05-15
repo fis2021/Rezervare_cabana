@@ -11,19 +11,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
 import org.loose.fis.sre.services.AdService;
-import org.loose.fis.sre.services.UserService;
-import org.loose.fis.sre.services.RenterService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class SearchToRentController extends AdService implements Initializable {
-    public TableView<Ad> tableView;
+    public TableView<Ad> tableView ;
     public TableColumn id;
     public TableColumn Locatie;
     public TableColumn NumeProprietate;
@@ -32,11 +29,11 @@ public class SearchToRentController extends AdService implements Initializable {
     @FXML
     private Text creatingAdMessage;
     @FXML
-    private TextField nume_proprietate;
+    private TextField nume_proprietatateField;
     @FXML
-    private TextField locatie;
+    private TextField locatieField;
     @FXML
-    private TextField pret;
+    private TextField pretField;
 
     public String ClientName ;
 
@@ -72,10 +69,13 @@ public class SearchToRentController extends AdService implements Initializable {
         this.ClientName = text ;
     }
 
+
+
     public void populateTable() {
         //System.out.println(rez.get(0).getLocatie());
         //getData();
         ObservableList<Ad> data2 = tableView.getItems();
+
         //ObservableList<Integer> dat = tableView.getItems();
         for (int i = 0; i < rez.size(); i++) {
             data2.add(new Ad(rez.get(i).getNume_proprietar(),
@@ -98,6 +98,8 @@ public class SearchToRentController extends AdService implements Initializable {
             }
         });
     }
+
+
 /*
     public void select()
     {
@@ -132,18 +134,115 @@ public class SearchToRentController extends AdService implements Initializable {
 
     public void handleSearchByNameAction(MouseEvent mouseEvent) 
     {
-        
+        ObservableList<Ad> Ads = tableView.getItems();
+        tableView.getItems().clear();
+        for (int i = 0; i < rez.size(); i++) {
+            if(rez.get(i).getNume_proprietate().toLowerCase().contains(nume_proprietatateField.getText().toLowerCase())){
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
+                        )
+                );
+            }
+
+        }
+        id.setCellFactory(col -> new TableCell<Task, String>() {
+            @Override
+            public void updateIndex(int index) {
+                super.updateIndex(index);
+                if (isEmpty() || index < 0) {
+                    setText(null);
+                } else {
+                    setText(Integer.toString(index + 1));
+                }
+            }
+        });
+
     }
 
     public void handleSearchByLocationAction(MouseEvent mouseEvent) 
     {
-        
+        ObservableList<Ad> Ads = tableView.getItems();
+        tableView.getItems().clear();
+        for (int i = 0; i < rez.size(); i++) {
+            if(rez.get(i).getLocatie().toLowerCase().contains(locatieField.getText().toLowerCase())){
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
+                        )
+                );
+            }
+
+        }
+        id.setCellFactory(col -> new TableCell<Task, String>() {
+            @Override
+            public void updateIndex(int index) {
+                super.updateIndex(index);
+                if (isEmpty() || index < 0) {
+                    setText(null);
+                } else {
+                    setText(Integer.toString(index + 1));
+                }
+            }
+        });
     }
 
-    public void handleSearchByPrice(MouseEvent mouseEvent) 
+    public void handleSearchByPrice(MouseEvent mouseEvent)
     {
+        ObservableList<Ad> Ads = tableView.getItems();
+        tableView.getItems().clear();
+        for (int i = 0; i < rez.size(); i++) {
+            if(Integer.parseInt(rez.get(i).getPret())<=Integer.parseInt(pretField.getText())){
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
+                        )
+                );
+            }
 
+        }
+        id.setCellFactory(col -> new TableCell<Task, String>() {
+            @Override
+            public void updateIndex(int index) {
+                super.updateIndex(index);
+                if (isEmpty() || index < 0) {
+                    setText(null);
+                } else {
+                    setText(Integer.toString(index + 1));
+                }
+            }
+        });
     }
+
+    public void ShowAll(MouseEvent mouseEvent)
+    {
+        ObservableList<Ad> Ads = tableView.getItems();
+        tableView.getItems().clear();
+        for (int i = 0; i < rez.size(); i++) {
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
+                        )
+                );
+
+        }
+        id.setCellFactory(col -> new TableCell<Task, String>() {
+            @Override
+            public void updateIndex(int index) {
+                super.updateIndex(index);
+                if (isEmpty() || index < 0) {
+                    setText(null);
+                } else {
+                    setText(Integer.toString(index + 1));
+                }
+            }
+        });
+    }
+
 
     public void handleRentAction(MouseEvent mouseEvent) throws IOException
     {
