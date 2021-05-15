@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.exceptions.NoPasswordException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
@@ -21,6 +22,11 @@ import org.loose.fis.sre.services.UserService;
 import org.loose.fis.sre.services.RenterService;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class RentController extends RenterService implements Initializable {
@@ -28,6 +34,8 @@ public class RentController extends RenterService implements Initializable {
     public TextField nume_proprietate;
     @FXML
     public HBox RentButton;
+    @FXML
+    public DatePicker Date;
     @FXML
     private Text rentingMessage;
     @FXML
@@ -68,6 +76,7 @@ public class RentController extends RenterService implements Initializable {
         delay.play();
     }
 
+    public static DateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public void handleRentingAction()
     {
         if (!checkForEmptyFields())
@@ -83,15 +92,48 @@ public class RentController extends RenterService implements Initializable {
             {
                 rentingMessage.setText(e.getMessage());
             }
+            //LocalDate data = Date.getValue();
+
+            System.out.println(Date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+
         }
         //else
             //rentingMessage.setText("Error: There are some incomplete fields !");
+    }
+
+    public void convertDatePicker_Date_to_specified_format()
+    {
+        Date.setConverter(new StringConverter<LocalDate>() {
+            String pattern = "dd-MM-yyyy";
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+            {
+                Date.setPromptText(pattern.toLowerCase());
+            }
+
+            @Override public String toString(LocalDate date) {
+                if (date != null) {
+                    return dateFormatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, dateFormatter);
+                } else {
+                    return null;
+                }
+            }
+        });
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         nume_proprietate.setText(initializareNume_proprietate());
+        convertDatePicker_Date_to_specified_format();
     }
 
 }

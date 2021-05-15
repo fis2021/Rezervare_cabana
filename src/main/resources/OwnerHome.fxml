@@ -18,7 +18,7 @@
     </padding>
     <Text id="title-text" style="-fx-font-size : 18" text="Anunturile mele de inchiriere :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <TableView fx:id="tableView" GridPane.rowSpan="2" GridPane.rowIndex="1" >
+    <TableView fx:id="tableView" prefWidth="500" prefHeight="500" GridPane.rowSpan="2" GridPane.rowIndex="1" >
         <columns>
             <TableColumn fx:id="id" text="#" prefWidth="25">
             </TableColumn>
@@ -26,11 +26,11 @@
                 <cellValueFactory><PropertyValueFactory property="nume_proprietate" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="locatie" text="Locatie" prefWidth="100">
+            <TableColumn fx:id="locatie" text="Locatie" prefWidth="150">
                 <cellValueFactory><PropertyValueFactory property="locatie" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="pret" text="Pret" prefWidth="100">
+            <TableColumn fx:id="pret" text="Pret" prefWidth="110">
                 <cellValueFactory><PropertyValueFactory property="pret" />
                 </cellValueFactory>
             </TableColumn>

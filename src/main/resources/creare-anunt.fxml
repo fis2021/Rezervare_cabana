@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.DateCell?>
-<GridPane alignment="center" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CreateAdController">
+<GridPane alignment="center" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CreateAdController">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
@@ -18,25 +13,31 @@
 
     <Label text="Nume proprietar:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="nume_proprietar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="nume_proprietar" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <Label text="Nume proprietate:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="nume_proprietate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="nume_proprietate" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <Label text="Locatie:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <TextField fx:id="locatie" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="locatie" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Label text="Pret:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label prefWidth="200" text="Pret:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
     <TextField fx:id="pret" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="10" />
+    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="8" />
     <HBox alignment="bottom_right" spacing="10" style="-fx-font-size: 24" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button onAction="#handleCreateAdAction" text="Create ad" />
     </HBox>
 
-    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <DatePicker GridPane.halignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+   <columnConstraints>
+      <ColumnConstraints prefWidth="150" />
+      <ColumnConstraints  prefWidth="250" />
+   </columnConstraints>
+
 
 </GridPane>
