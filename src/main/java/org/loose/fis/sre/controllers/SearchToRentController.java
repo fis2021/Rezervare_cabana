@@ -40,8 +40,9 @@ public class SearchToRentController extends AdService implements Initializable {
 
     public String ClientName ;
 
+    public boolean checkIfPropertyRented2 ;
 
-    //private int i = 1;
+    private int countNewPropertiesRented = 1;
 
     public void switchStage_to_Rent() throws IOException {
         Stage stage = new Stage();
@@ -57,8 +58,13 @@ public class SearchToRentController extends AdService implements Initializable {
         //
 
         stage.setTitle("Rental Process");
-        stage.setScene(new Scene(root, 500, 500));
-        stage.show();
+        stage.setScene(new Scene(root, 650, 500));
+        stage.showAndWait();
+        checkIfPropertyRented2 = false ;
+        if (controller.checkIfPropertyRented)
+        {
+            checkIfPropertyRented2 = true ;
+        }
     }
 
     public void getClientNameText(String text)
@@ -108,11 +114,16 @@ public class SearchToRentController extends AdService implements Initializable {
     }
 */
     public static String property_name ;
+    public Ad[] returnAdRented = new Ad[rez.size()];
+    private int i = 0 ;
+    //Ad ad ;
     public void select2()
     {
+        //Ad ad = tableView.getSelectionModel().getSelectedItem();
+        //property_name = ad.getNume_proprietate();
         Ad ad = tableView.getSelectionModel().getSelectedItem();
-
         property_name = ad.getNume_proprietate();
+        returnAdRented[i++] = ad;
         //System.out.println(x);
 
         //return x ;

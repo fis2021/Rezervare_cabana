@@ -28,7 +28,7 @@
 
     <Text fx:id="creatingReviewMessage" GridPane.halignment="center" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
-        <Button onMouseClicked="#handleLeaveReviewAction" text="Leave Review" prefWidth="150" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleCreateReviewAction" text="Leave Review" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
 
