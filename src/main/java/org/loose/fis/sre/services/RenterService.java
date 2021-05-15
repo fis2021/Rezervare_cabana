@@ -1,5 +1,6 @@
 package org.loose.fis.sre.services;
 
+import javafx.scene.control.DatePicker;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.controllers.SearchToRentController;
@@ -7,6 +8,8 @@ import org.loose.fis.sre.exceptions.RenterAlreadyExistsException;
 import org.loose.fis.sre.model.Renter;
 
 import java.util.Objects;
+import java.util.Date;
+import java.time.LocalDate;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
@@ -26,9 +29,9 @@ public class RenterService extends SearchToRentController {
         return RenterRepository;
     }
 
-    public static void addRenter(String nume_proprietate, String full_name, String email, String phone, boolean over_18) throws RenterAlreadyExistsException {
+    public static void addRenter(String nume_proprietate, String full_name, String email, String phone, boolean over_18, String data_inceput, String data_final) throws RenterAlreadyExistsException {
         //checkRenterDoesNotAlreadyExist(full_name);
-        RenterRepository.insert(new Renter(nume_proprietate, full_name, email, phone, over_18));
+        RenterRepository.insert(new Renter(nume_proprietate, full_name, email, phone, over_18,data_inceput,data_final));
     }
 
     protected static void checkRenterDoesNotAlreadyExist(String full_name) throws RenterAlreadyExistsException {

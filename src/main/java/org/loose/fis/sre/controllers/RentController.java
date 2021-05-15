@@ -21,7 +21,10 @@ import org.loose.fis.sre.services.UserService;
 import org.loose.fis.sre.services.RenterService;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 public class RentController extends RenterService implements Initializable {
     @FXML
@@ -38,6 +41,11 @@ public class RentController extends RenterService implements Initializable {
     private TextField phone;
     @FXML
     private CheckBox over_18;
+    @FXML
+    private DatePicker data_inceput;
+    @FXML
+    private DatePicker data_final;
+
 
     public boolean checkIfPropertyRented = false;
 
@@ -74,7 +82,7 @@ public class RentController extends RenterService implements Initializable {
         {
             try
             {
-                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected());
+                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected(),data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ,data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 rentingMessage.setText("Rental process complete!");
                 checkIfPropertyRented = true ;
                 closeStageAfterRentButtonPressed();
