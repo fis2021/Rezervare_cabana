@@ -54,4 +54,6 @@
         <Button onMouseClicked="#handleCancelRentalAction" text="Cancel rental" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
+
+
 </GridPane>

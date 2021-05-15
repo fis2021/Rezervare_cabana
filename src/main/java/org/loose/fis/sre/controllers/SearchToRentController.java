@@ -243,6 +243,19 @@ public class SearchToRentController extends AdService implements Initializable {
         });
     }
 
+    public void switchStage_to_view_reviews(String proprietate_cautata) throws IOException
+    {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("ViewReviews.fxml"));
+        Pane root = fxmlLoader.load();
+        ReviewsController controller = fxmlLoader.getController() ;
+        controller.populateTableReviews(proprietate_cautata);
+        stage.setTitle("View Reviews");
+        stage.setScene(new Scene(root, 900 , 900));
+        stage.show();
+
+
+    }
 
     public void handleRentAction(MouseEvent mouseEvent) throws IOException
     {
@@ -253,9 +266,11 @@ public class SearchToRentController extends AdService implements Initializable {
         //System.out.println(property_name);
     }
 
-    public void handleViewReviewsAction(MouseEvent mouseEvent)
+    public void handleViewReviewsAction(MouseEvent mouseEvent) throws IOException
     {
-        select2();
+        Ad ad = tableView.getSelectionModel().getSelectedItem();
+        String nume_proprietate=ad.getNume_proprietate();
+        switchStage_to_view_reviews(nume_proprietate);
     }
 
     @Override

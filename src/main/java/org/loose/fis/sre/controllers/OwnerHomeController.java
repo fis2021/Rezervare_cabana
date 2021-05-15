@@ -80,6 +80,22 @@ public class OwnerHomeController extends AdService implements Initializable
         stage.show();
     }
 
+    public void switchStage_to_view_reviews() throws IOException
+    {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("ViewReviews.fxml"));
+        Pane root = fxmlLoader.load();
+        ReviewsController controller = fxmlLoader.getController() ;
+        Ad ad = tableView.getSelectionModel().getSelectedItem();
+        String nume_proprietate=ad.getNume_proprietate();
+        controller.populateTableReviews(nume_proprietate);
+        stage.setTitle("View Reviews");
+        stage.setScene(new Scene(root, 900 , 900));
+        stage.show();
+
+
+    }
+
     public void passOwnerNameText(String text)
     {
         //System.out.println( text );
@@ -135,6 +151,11 @@ public class OwnerHomeController extends AdService implements Initializable
     {
         select();
         switchStage_to_Leave_Review();
+    }
+
+    public void handleViewReviewsAction(MouseEvent mouseEvent) throws IOException
+    {
+        switchStage_to_view_reviews();
     }
 
     @Override
