@@ -45,4 +45,8 @@
         <Button onMouseClicked="#handleRespondReviewAdAction" text="Respond Review" prefWidth="120" textAlignment="CENTER"/>
     </HBox>
 
+    <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Button onMouseClicked="#handleViewReviewsAction" text="View Reviews" prefWidth="120" textAlignment="CENTER"/>
+    </HBox>
+
 </GridPane>
