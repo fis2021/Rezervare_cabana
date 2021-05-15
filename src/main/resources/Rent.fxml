@@ -26,17 +26,20 @@
 
     <TextField fx:id="phone" promptText="Phone Number" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-    <Label text="Over 18" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-    <CheckBox fx:id="over_18" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <TextField fx:id="pret_noapte" promptText="Pret Noapte" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
-    <Label text="Selectati data inceputului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-    <DatePicker fx:id="data_inceput" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-    <Label text="Selectati data sfarsitului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-    <DatePicker fx:id="data_final" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+    <Label text="Over 18" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <CheckBox fx:id="over_18" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-    <Text fx:id="rentingMessage" GridPane.halignment="center" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-    <HBox fx:id="RentButton" alignment="bottom_left" spacing="10"  GridPane.columnIndex="0" GridPane.rowIndex="9">
+    <Label text="Selectati data inceputului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+    <DatePicker fx:id="data_inceput" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+    <Label text="Selectati data sfarsitului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+    <DatePicker fx:id="data_final" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+    <Text fx:id="rentingMessage" GridPane.halignment="center" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+    <HBox fx:id="RentButton" alignment="bottom_left" spacing="10"  GridPane.columnIndex="0" GridPane.rowIndex="10">
         <Button onMouseClicked="#handleRentingAction" style="-fx-font: 20 Calibri" text="Rent" prefWidth="100" textAlignment="CENTER"/>
     </HBox>
 

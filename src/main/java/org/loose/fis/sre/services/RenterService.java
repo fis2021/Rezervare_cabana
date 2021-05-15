@@ -3,10 +3,13 @@ package org.loose.fis.sre.services;
 import javafx.scene.control.DatePicker;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.sre.controllers.SearchToRentController;
 import org.loose.fis.sre.exceptions.RenterAlreadyExistsException;
+import org.loose.fis.sre.model.Ad;
 import org.loose.fis.sre.model.Renter;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Date;
 import java.time.LocalDate;
@@ -29,9 +32,9 @@ public class RenterService extends SearchToRentController {
         return RenterRepository;
     }
 
-    public static void addRenter(String nume_proprietate, String full_name, String email, String phone, boolean over_18, String data_inceput, String data_final) throws RenterAlreadyExistsException {
+    public static void addRenter(String nume_proprietate, String full_name, String email, String phone, boolean over_18, String data_inceput, String data_final,int pret_noapte) throws RenterAlreadyExistsException {
         //checkRenterDoesNotAlreadyExist(full_name);
-        RenterRepository.insert(new Renter(nume_proprietate, full_name, email, phone, over_18,data_inceput,data_final));
+        RenterRepository.insert(new Renter(nume_proprietate, full_name, email, phone, over_18,data_inceput,data_final,pret_noapte));
     }
 
     protected static void checkRenterDoesNotAlreadyExist(String full_name) throws RenterAlreadyExistsException {
@@ -47,5 +50,7 @@ public class RenterService extends SearchToRentController {
         //System.out.println(property_name);
         return property_name;
     }
-
+    public String initializarePret_noapte(){
+        return price_per_night;
+    }
 }

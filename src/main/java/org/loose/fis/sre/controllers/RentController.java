@@ -45,6 +45,8 @@ public class RentController extends RenterService implements Initializable {
     private DatePicker data_inceput;
     @FXML
     private DatePicker data_final;
+    @FXML
+    private TextField pret_noapte;
 
 
     public boolean checkIfPropertyRented = false;
@@ -68,6 +70,10 @@ public class RentController extends RenterService implements Initializable {
         full_name.setText(clientName);
     }
 
+    public void setPret_noapte_Text_as_Renter(String Pret) {
+        full_name.setText(Pret);
+    }
+
     public void closeStageAfterRentButtonPressed()
     {
         Stage stage = (Stage) RentButton.getScene().getWindow();
@@ -82,7 +88,7 @@ public class RentController extends RenterService implements Initializable {
         {
             try
             {
-                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected(),data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ,data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected(),data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ,data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),Integer.parseInt(pret_noapte.getText()));
                 rentingMessage.setText("Rental process complete!");
                 checkIfPropertyRented = true ;
                 closeStageAfterRentButtonPressed();
@@ -100,6 +106,8 @@ public class RentController extends RenterService implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         nume_proprietate.setText(initializareNume_proprietate());
+        pret_noapte.setText(initializarePret_noapte());
+        pret_noapte.setEditable(false);
     }
 
 }
