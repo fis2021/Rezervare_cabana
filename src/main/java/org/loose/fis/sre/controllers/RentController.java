@@ -94,7 +94,7 @@ public class RentController extends RenterService implements Initializable {
             }
             //LocalDate data = Date.getValue();
 
-            System.out.println(Date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            //System.out.println(Date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
         }
         //else
