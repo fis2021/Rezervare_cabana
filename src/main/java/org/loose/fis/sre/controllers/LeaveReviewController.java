@@ -45,12 +45,9 @@ public class LeaveReviewController extends ReviewService implements Initializabl
     {
         if (!checkForEmptyFields())
         {
-            try {
                 ReviewService.addReview(Nume_proprietate.getText(), numeAutor.getText(), textReview.getText());
                 creatingReviewMessage.setText("Review created successfully!");
-            } catch (AdAlreadyExistsException e) {
-                creatingReviewMessage.setText(e.getMessage());
-            }
+
         }
         else
             creatingReviewMessage.setText("Error: There are some incomplete fields !");
