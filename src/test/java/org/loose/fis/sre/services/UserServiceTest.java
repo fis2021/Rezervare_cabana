@@ -17,16 +17,6 @@ class UserServiceTest {
 
     public static final String OWNER = "Owner";
 
-    @BeforeAll
-    static void beforeAll() {
-        System.out.println("Before Class");
-    }
-
-    @AfterAll
-    static void afterAll() {
-        System.out.println("After Class");
-    }
-
     @BeforeEach
     void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-rezervare-cabana";
@@ -38,7 +28,7 @@ class UserServiceTest {
     @AfterEach
     void tearDown() {
         UserService.closeDatabase();
-        System.out.println("After each");
+        //System.out.println("After each");
     }
 
 

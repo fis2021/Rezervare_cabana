@@ -3,6 +3,7 @@ package org.loose.fis.sre.controllers;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -122,6 +123,8 @@ class ClientHomeControllerTest
         robot.clickOn("#searchToRentButton_css");
         ObservableList<Window> stages =  Stage.getWindows().filtered(Window::isShowing);
         assertThat(((Stage)stages.get(0)).getTitle().contains("Search to Rent")||((Stage)stages.get(1)).getTitle().contains("Search to Rent"));
+        Thread.sleep(500);
+        robot.push(KeyCode.ALT,KeyCode.F4);
     }
 
     @Test
@@ -135,6 +138,8 @@ class ClientHomeControllerTest
         robot.clickOn("#RentDetailsButton_css");
         ObservableList<Window> stages =  Stage.getWindows().filtered(Window::isShowing);
         assertThat(((Stage)stages.get(0)).getTitle().contains("Rent Details")||((Stage)stages.get(1)).getTitle().contains("Rent Details"));
+        Thread.sleep(500);
+        robot.push(KeyCode.ALT,KeyCode.F4);
     }
 
     @Test
@@ -148,6 +153,8 @@ class ClientHomeControllerTest
         robot.clickOn("#LeaveReviewButton_css");
         ObservableList<Window> stages =  Stage.getWindows().filtered(Window::isShowing);
         assertThat(((Stage)stages.get(0)).getTitle().contains("Write review")||((Stage)stages.get(1)).getTitle().contains("Write review"));
+        Thread.sleep(500);
+        robot.push(KeyCode.ALT,KeyCode.F4);
     }
 
     @Test
@@ -165,7 +172,7 @@ class ClientHomeControllerTest
         robot.clickOn();
         Thread.sleep(200);
         assertThat(robot.lookup("#table_css").query().isFocused()); //if focused, then the field was successfully deleted
-
+        robot.push(KeyCode.ALT,KeyCode.F4);
     }
 
 

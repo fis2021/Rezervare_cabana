@@ -27,12 +27,10 @@
 
     <TextField fx:id="pret" id="pret_add_css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="8" />
+    <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="6" />
     <HBox alignment="bottom_right" spacing="10" style="-fx-font-size: 24" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button onAction="#handleCreateAdAction" id="createadbuttonconfirm_css" text="Create ad" />
     </HBox>
-
-    <DatePicker GridPane.halignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
    <columnConstraints>
       <ColumnConstraints prefWidth="150" />

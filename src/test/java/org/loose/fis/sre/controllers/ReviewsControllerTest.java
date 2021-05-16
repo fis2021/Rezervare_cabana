@@ -114,7 +114,7 @@ class ReviewsControllerTest {
         robot.clickOn("#role_css").clickOn("Client");
         robot.clickOn("#registerbutton_css");
         robot.clickOn("#loginbutton_css");
-        robot.clickOn("#searchtorentbutton_css");
+        robot.clickOn("#searchToRentButton_css");
         robot.clickOn(NUME_PROPRIETATE);
         robot.clickOn("#rentbutton_css");
         robot.clickOn("#email_rent_css");
