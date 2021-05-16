@@ -11,6 +11,7 @@ import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
 import org.loose.fis.sre.model.Renter;
 import org.loose.fis.sre.model.User;
+import org.loose.fis.sre.model.Review;
 
 
 import java.util.Arrays;
@@ -28,13 +29,14 @@ public class AdService
         database = Nitrite.builder()
                 .filePath(getPathToFile("places-to-rent2.db").toFile())
                 .openOrCreate("test", "test");
+
         AdRepository = database.getRepository(Ad.class);
     }
-
-    public static ObjectRepository<Ad> getAdDatabase()
-    {
-        return AdRepository;
+    public static void closeDatabase(){
+        database.close();
     }
+
+    public static List<Ad> getAllAds() { return AdRepository.find().toList();}
 
     public static void addAd(String nume_proprietar, String nume_proprietate, String locatie, String pret) throws AdAlreadyExistsException {
         checkAdDoesNotAlreadyExist(nume_proprietate);
@@ -52,15 +54,6 @@ public class AdService
         }
     }
     public List<Ad> rez = AdRepository.find(ObjectFilters.ALL).toList();
-
-    public static List<Ad> getAllAds() {
-        return AdRepository.find().toList();
-    }
-
-    public static void closeDatabase()
-    {
-        database.close();
-    }
 
     protected void getData()
     {

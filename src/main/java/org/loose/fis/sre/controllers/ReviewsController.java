@@ -42,13 +42,8 @@ public class ReviewsController extends ReviewService implements Initializable
 
 
     public void populateTableReviews(String proprietate_cautata) {
-        //System.out.println(rez.get(0).getLocatie());
-        //getData();
         ObservableList<Review> data2 = table.getItems();
-        //ObservableList<Integer> dat = tableView.getItems();
-        //for (int j = 0 ; j < rez.size() ; j ++ )
         {
-            //if ((rez.get(j).getFull_name()).equals(this.ClientName))
                 for (int i = 0; i < reviewsList.size(); i++) {
                     if(reviewsList.get(i).getNume_proprietate().equals(proprietate_cautata))
                         data2.add(new Review(reviewsList.get(i).getNume_proprietate(),
@@ -60,18 +55,6 @@ public class ReviewsController extends ReviewService implements Initializable
                         );
                 }
         }
-        /*
-        table.setRowFactory(param -> {
-            return new TableRow() {
-                @Override
-                public void updateIndex(int i) {
-                    super.updateIndex(i);
-
-                    setMinHeight(50 * i);
-                }
-            };
-        });
-         */
 
         final Callback<TableColumn<Review,String>, TableCell<Review,String>> WRAPPING_CELL_FACTORY =
                 new Callback<TableColumn<Review,String>, TableCell<Review,String>>() {
@@ -130,11 +113,4 @@ public class ReviewsController extends ReviewService implements Initializable
         });
     }
 
-/*
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-        populateTableReviews();
-    }
-*/
 }
