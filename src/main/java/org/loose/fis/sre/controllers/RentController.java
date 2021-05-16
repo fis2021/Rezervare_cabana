@@ -15,7 +15,6 @@ import javafx.util.Duration;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.exceptions.NoPasswordException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
-import org.loose.fis.sre.exceptions.RenterAlreadyExistsException;
 import org.loose.fis.sre.model.Renter;
 import org.loose.fis.sre.services.AdService;
 import org.loose.fis.sre.services.UserService;
@@ -72,6 +71,10 @@ public class RentController extends RenterService implements Initializable {
             rentingMessage.setText("Error: The selected date interval is nod available !");
             return true;
         }
+        else if (isDateCorrect(data_parser(data_final),data_parser(data_inceput))==false){
+            rentingMessage.setText("Error: Nu putem merge in trecut");
+            return true;
+        }
         return false ;
     }
 
@@ -90,6 +93,10 @@ public class RentController extends RenterService implements Initializable {
         delay.setOnFinished( event -> stage.close() );
         delay.play();
     }
+    public String data_parser(DatePicker data){
+        String data_f= data.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return data_f;
+    }
 
     public int Data1_minus_Data2(String data_final, String data_inceput)
     {
@@ -98,6 +105,14 @@ public class RentController extends RenterService implements Initializable {
         LocalDate data2 = LocalDate.parse(data_final,formatter);
         Period diff = Period.between(data1,data2);
         return diff.getDays();
+    }
+
+    public boolean isDateCorrect(String data_final,String data_inceput)
+    {
+        int diff=Data1_minus_Data2(data_final,data_inceput);
+        if(diff<1)
+            return false;
+        return true;
     }
 
     private List<Renter> ListOfRenters=  getAllRenters() ;
@@ -139,17 +154,11 @@ public class RentController extends RenterService implements Initializable {
     {
         if (!checkForEmptyFields())
         {
-            try
-            {
+
                 RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected(),data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ,data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),Integer.parseInt(pret_noapte.getText()));
                 rentingMessage.setText("Rental process complete!");
                 checkIfPropertyRented = true ;
                 closeStageAfterRentButtonPressed();
-            }
-            catch (RenterAlreadyExistsException e)
-            {
-                rentingMessage.setText(e.getMessage());
-            }
         }
         //else
             //rentingMessage.setText("Error: There are some incomplete fields !");
