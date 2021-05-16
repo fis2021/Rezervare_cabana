@@ -58,7 +58,7 @@
                 <cellValueFactory><PropertyValueFactory property="locatie" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="Pret" text="Pret" prefWidth="100">
+            <TableColumn fx:id="Pret" text="Pret/Noapte" prefWidth="100">
                 <cellValueFactory><PropertyValueFactory property="pret" />
                 </cellValueFactory>
             </TableColumn>
