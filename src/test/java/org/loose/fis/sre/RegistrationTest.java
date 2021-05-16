@@ -25,7 +25,7 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 @ExtendWith(ApplicationExtension.class)
 
 
-
+@Disabled
 class RegistrationTest {
 
     public static final String USERNAME = "usertest";

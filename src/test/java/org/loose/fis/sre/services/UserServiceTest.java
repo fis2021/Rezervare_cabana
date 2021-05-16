@@ -19,7 +19,7 @@ import java.nio.file.NoSuchFileException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
-
+@Disabled
 class UserServiceTest {
 
     public static final String OWNER = "Owner";
