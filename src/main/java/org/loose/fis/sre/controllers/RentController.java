@@ -160,6 +160,7 @@ public class RentController extends RenterService implements Initializable {
     {
         nume_proprietate.setText(initializareNume_proprietate());
         pret_noapte.setText(initializarePret_noapte());
+        ///pret_noapte.setEditable(false);
     }
 
 }

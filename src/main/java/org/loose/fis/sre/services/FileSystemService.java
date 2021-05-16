@@ -8,6 +8,9 @@ public class FileSystemService {
     public static String APPLICATION_FOLDER = ".rezervare-cabana";
     private static final String USER_FOLDER = System.getProperty("user.home");
 
+    public static void setApplicationFolder(String applicationFolder) {
+        APPLICATION_FOLDER = applicationFolder;
+    }
 
     public static Path getPathToFile(String... path) {
         return getApplicationHomeFolder().resolve(Paths.get(".", path));
@@ -22,7 +25,9 @@ public class FileSystemService {
         if (!Files.exists(applicationHomePath))
             applicationHomePath.toFile().mkdirs();
     }
+    /*
     static {
         initDirectory();
     }
+     */
 }

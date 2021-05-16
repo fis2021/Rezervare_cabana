@@ -26,6 +26,7 @@
 
     <TextField fx:id="phone" promptText="Phone Number" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
+    <TextField fx:id="pret_noapte" promptText="Pret Noapte" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="5" />
     <TextField fx:id="pret_noapte"  editable="false" mouseTransparent="true" focusTraversable="false"   promptText="Pret Noapte" visible="true" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
 
