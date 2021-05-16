@@ -90,8 +90,9 @@ public class OwnerHomeController extends AdService implements Initializable
         Ad ad = tableView.getSelectionModel().getSelectedItem();
         String nume_proprietate=ad.getNume_proprietate();
         controller.populateTableReviews(nume_proprietate);
+        controller.Nume_proprietate.setText(nume_proprietate);
         stage.setTitle("View Reviews");
-        stage.setScene(new Scene(root, 900 , 900));
+        stage.setScene(new Scene(root, 800 , 800));
         stage.show();
 
 

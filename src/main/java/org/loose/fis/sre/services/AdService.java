@@ -31,6 +31,10 @@ public class AdService
         AdRepository = database.getRepository(Ad.class);
     }
 
+    public static ObjectRepository<Ad> getAdDatabase()
+    {
+        return AdRepository;
+    }
 
     public static void addAd(String nume_proprietar, String nume_proprietate, String locatie, String pret) throws AdAlreadyExistsException {
         checkAdDoesNotAlreadyExist(nume_proprietate);
