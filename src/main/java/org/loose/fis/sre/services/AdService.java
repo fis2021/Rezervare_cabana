@@ -10,6 +10,7 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
 import org.loose.fis.sre.model.Renter;
+import org.loose.fis.sre.model.User;
 
 
 import java.util.Arrays;
@@ -20,14 +21,13 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class AdService
 {
+    private static Nitrite database;
     private static ObjectRepository<Ad> AdRepository;
-
     public static void initDatabase()
     {
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(getPathToFile("places-to-rent2.db").toFile())
                 .openOrCreate("test", "test");
-
         AdRepository = database.getRepository(Ad.class);
     }
 
@@ -52,6 +52,16 @@ public class AdService
         }
     }
     public List<Ad> rez = AdRepository.find(ObjectFilters.ALL).toList();
+
+    public static List<Ad> getAllAds() {
+        return AdRepository.find().toList();
+    }
+
+    public static void closeDatabase()
+    {
+        database.close();
+    }
+
     protected void getData()
     {
 

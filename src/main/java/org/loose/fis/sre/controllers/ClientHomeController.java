@@ -14,12 +14,11 @@ import javafx.stage.Stage;
 import org.dizitart.no2.RemoveOptions;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
-import org.loose.fis.sre.exceptions.USERAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
-import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.model.Renter;
 import org.loose.fis.sre.services.AdService;
 import org.loose.fis.sre.services.RenterService;
+import org.loose.fis.sre.exceptions.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -185,6 +184,7 @@ public class ClientHomeController extends AdService implements Initializable {
         Ad ad = tableView.getSelectionModel().getSelectedItem();
 
         property_name = ad.getNume_proprietate();
+
     }
 
     public void handleSearchToRentAction(MouseEvent mouseEvent) throws IOException
@@ -195,13 +195,13 @@ public class ClientHomeController extends AdService implements Initializable {
     public void handleLeaveReviewAction(MouseEvent mouseEvent) throws IOException
     {
         select();
+
         //System.out.println(property_name);
         switchStage_to_Leave_Review();
 
     }
 
-    public void handleCancelRentalAction(MouseEvent mouseEvent)
-    {
+    public void handleCancelRentalAction(MouseEvent mouseEvent) throws IOException{
         select();
         RemoveOptions options = new RemoveOptions();
         options.setJustOne(true);

@@ -12,16 +12,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<GridPane alignment="TOP_LEFT" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ClientHomeController">
+<GridPane alignment="TOP_LEFT" hgap="10" prefHeight="800" prefWidth="1200" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ClientHomeController">
 
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
     <Text id="title-text" style="-fx-font-size : 18" text="Inchiriate :" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-    <TableView fx:id="tableView" GridPane.rowSpan="2" GridPane.rowIndex="1" >
+    <TableView fx:id="tableView" id="table_css" GridPane.rowSpan="2" GridPane.rowIndex="1" >
         <columns>
-            <TableColumn fx:id="id" text="#" prefWidth="25">
+            <TableColumn fx:id="id" id="id_css"  text="#" prefWidth="25">
             </TableColumn>
             <TableColumn fx:id="nume_proprietar" text="Nume Proprietar" prefWidth="150">
                 <cellValueFactory><PropertyValueFactory property="nume_proprietar" />
@@ -43,19 +43,19 @@
     </TableView>
 
     <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="1" GridPane.rowIndex="0">
-        <Button onMouseClicked="#handleSearchToRentAction" style="-fx-font: 18 Calibri" text="Search to rent" prefWidth="150" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleSearchToRentAction" id="searchToRentButton_css" style="-fx-font: 18 Calibri" text="Search to rent" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <Button onMouseClicked="#handleLeaveReviewAction" text="Leave Review" prefWidth="150" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleLeaveReviewAction" id="LeaveReviewButton_css" text="Leave Review" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
-        <Button onMouseClicked="#handleCancelRentalAction" text="Cancel rental" prefWidth="150" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleCancelRentalAction" id="CancelRentalButton_css" text="Cancel rental" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
-        <Button onMouseClicked="#handleRentDetailsAction" text="Reservation Details" prefWidth="150" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleRentDetailsAction" id="RentDetailsButton_css" text="Reservation Details" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
 

@@ -34,8 +34,8 @@ class UserServiceTest {
         System.out.println("After Class");
     }
 
-    @BeforeAll
-    static void setUp() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-rezervare-cabana";
         //System.gc();
         //Thread.sleep(2000);
@@ -48,6 +48,7 @@ class UserServiceTest {
 
     @AfterEach
     void tearDown() {
+        UserService.closeDatabase();
         System.out.println("After each");
     }
 
