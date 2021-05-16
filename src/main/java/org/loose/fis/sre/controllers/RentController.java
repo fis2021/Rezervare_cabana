@@ -91,7 +91,7 @@ public class RentController extends RenterService implements Initializable {
         delay.play();
     }
 
-    public int Diff_date(String data_inceput,String data_final)
+    public int Data1_minus_Data2(String data_final, String data_inceput)
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate data1 = LocalDate.parse(data_inceput,formatter);
@@ -107,14 +107,18 @@ public class RentController extends RenterService implements Initializable {
         ArrayList<Boolean> Disponibilitate = new ArrayList<>();
         for(int i = 0 ; i < ListOfRenters.size() ; i ++)
         {
+            String data_aleasa1 = data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String data_aleasa2 = data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String data_bd1 = ListOfRenters.get(i).getData_inceput();   // data din baza de date
+            String data_bd2 = ListOfRenters.get(i).getData_final();
 
-            System.out.println(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            if(ListOfRenters.get(i).getNume_proprietate().equals(nume_proprietate.getText())&&(ListOfRenters.get(i).getData_inceput() != null)&&(ListOfRenters.get(i).getData_final() != null))
+            //System.out.println(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            if(ListOfRenters.get(i).getNume_proprietate().equals(nume_proprietate.getText())&&(data_bd1 != null)&&(data_bd2 != null))
             {
-                if(((Diff_date(data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_inceput())<0)
-                        &&(Diff_date(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_inceput())<0))
-                        ||((Diff_date(data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_final())>0)
-                        &&(Diff_date(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_final())>0)))
+                if(!(((Data1_minus_Data2(data_bd1,data_aleasa1)>0)
+                        &&(Data1_minus_Data2(data_bd2,data_aleasa1)>0))
+                        ||((Data1_minus_Data2(data_bd1,data_aleasa2)<0)
+                        &&(Data1_minus_Data2(data_bd2,data_aleasa2)<0))))
                 {
                     Disponibilitate.add(Boolean.FALSE);
                     //Disponibilitate.get(i).toString();
