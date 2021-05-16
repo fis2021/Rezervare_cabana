@@ -53,4 +53,5 @@ public class RenterService extends SearchToRentController {
     public String initializarePret_noapte(){
         return price_per_night;
     }
+
 }

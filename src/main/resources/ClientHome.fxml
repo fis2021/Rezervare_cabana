@@ -35,7 +35,7 @@
                 <cellValueFactory><PropertyValueFactory property="locatie" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="pret" text="Pret" prefWidth="100">
+            <TableColumn fx:id="pret" text="Pret/Noapte" prefWidth="100">
                 <cellValueFactory><PropertyValueFactory property="pret" />
                 </cellValueFactory>
             </TableColumn>
@@ -52,6 +52,10 @@
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <Button onMouseClicked="#handleCancelRentalAction" text="Cancel rental" prefWidth="150" textAlignment="CENTER"/>
+    </HBox>
+
+    <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <Button onMouseClicked="#handleRentDetailsAction" text="Reservation Details" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
 

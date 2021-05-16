@@ -14,7 +14,9 @@ import javafx.stage.Stage;
 import org.dizitart.no2.RemoveOptions;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
+import org.loose.fis.sre.exceptions.USERAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
+import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.model.Renter;
 import org.loose.fis.sre.services.AdService;
 import org.loose.fis.sre.services.RenterService;
@@ -86,6 +88,20 @@ public class ClientHomeController extends AdService implements Initializable {
         stage.setTitle("Write review");
         stage.setScene(new Scene(root, 500, 500));
         stage.show();
+    }
+
+    public void switchStage_to_Rent_Details() throws IOException
+    {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("RentDetails.fxml"));
+        Pane root = fxmlLoader.load();
+        RentDetailsController controller = fxmlLoader.getController();
+        Ad ad = tableView.getSelectionModel().getSelectedItem();
+        controller.setTextFields(ad.getNume_proprietate(), ClientName );
+        stage.setTitle("Rent Details");
+        stage.setScene(new Scene(root,500,500));
+        stage.show();
+
     }
 
 
@@ -194,6 +210,9 @@ public class ClientHomeController extends AdService implements Initializable {
         tableView.refresh();
     }
 
+    public void handleRentDetailsAction(MouseEvent mouseEvent) throws IOException{
+        switchStage_to_Rent_Details();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {

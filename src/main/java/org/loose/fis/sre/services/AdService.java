@@ -9,6 +9,7 @@ import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
+import org.loose.fis.sre.model.Renter;
 
 
 import java.util.Arrays;
@@ -35,6 +36,10 @@ public class AdService
         checkAdDoesNotAlreadyExist(nume_proprietate);
         AdRepository.insert(new Ad(nume_proprietar, nume_proprietate, locatie, pret));
     }
+    public static ObjectRepository<Ad> getAds()
+    {
+        return AdRepository;
+    }
 
     protected static void checkAdDoesNotAlreadyExist(String nume_proprietate) throws AdAlreadyExistsException {
         for (Ad ad : AdRepository.find()) {
@@ -59,5 +64,7 @@ public class AdService
         System.out.println(ads[0].getLocatie());
         System.out.println(rez.get(0).getLocatie());
     }
+
+
 
 }
