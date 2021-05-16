@@ -13,23 +13,23 @@
 
     <Label text="Nume proprietar:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="nume_proprietar" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="nume_proprietar" id="nume_proprietar_add_css" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <Label text="Nume proprietate:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="nume_proprietate" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="nume_proprietate" id="nume_proprietate_add_css" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <Label text="Locatie:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <TextField fx:id="locatie" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="locatie" prefWidth="200" id="locatie_add_css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
     <Label prefWidth="200" text="Pret:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-    <TextField fx:id="pret" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="pret" id="pret_add_css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
     <Text fx:id="creatingAdMessage" GridPane.columnIndex="1" GridPane.halignment="center" GridPane.rowIndex="8" />
     <HBox alignment="bottom_right" spacing="10" style="-fx-font-size: 24" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onAction="#handleCreateAdAction" text="Create ad" />
+        <Button onAction="#handleCreateAdAction" id="createadbuttonconfirm_css" text="Create ad" />
     </HBox>
 
     <DatePicker GridPane.halignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />

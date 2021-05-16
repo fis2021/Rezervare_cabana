@@ -42,9 +42,9 @@
     </HBox>
 
 
-    <TableView fx:id="tableView" prefHeight="800" prefWidth="600"  GridPane.rowSpan="2" GridPane.rowIndex="4" >
+    <TableView fx:id="tableView" id="table_search_to_rent_css" prefHeight="800" prefWidth="600"  GridPane.rowSpan="2" GridPane.rowIndex="4" >
         <columns>
-            <TableColumn fx:id="id" text="#" prefWidth="25">
+            <TableColumn fx:id="id" id="table_search_to_rent_id_css" text="#" prefWidth="25">
             </TableColumn>
             <TableColumn fx:id="NumeProprietar" text="Nume Proprietar" prefWidth="150">
                 <cellValueFactory><PropertyValueFactory property="nume_proprietar" />
@@ -71,7 +71,7 @@
     </HBox>
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onMouseClicked="#handleRentAction" text="Rent" prefWidth="100" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleRentAction" text="Rent" id="rentbutton_css" prefWidth="100" textAlignment="CENTER"/>
     </HBox>
 
 </GridPane>

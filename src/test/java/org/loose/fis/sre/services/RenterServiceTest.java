@@ -24,14 +24,6 @@ public class RenterServiceTest {
     public static final boolean OVER18=true;
 
 
-    @BeforeAll
-    static void setUp() throws Exception {
-        FileSystemService.setApplicationFolder(".test-cabana-rezervare");
-        FileSystemService.initDirectory();
-        FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
-        RenterService.initDatabase();
-    }
-
 
     @BeforeEach
     void setUp2() throws IOException {
