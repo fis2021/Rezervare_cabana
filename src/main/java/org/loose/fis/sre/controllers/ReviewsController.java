@@ -113,6 +113,11 @@ public class ReviewsController extends ReviewService implements Initializable
             return cell ;
         });
 
+        Date.setStyle( "-fx-alignment: CENTER;");
+        Nr.setStyle( "-fx-alignment: CENTER;");
+        nume_autor.setStyle( "-fx-alignment: CENTER;");
+
+
         Nr.setCellFactory(col -> new TableCell<Task, String>() {
             @Override
             public void updateIndex(int index) {

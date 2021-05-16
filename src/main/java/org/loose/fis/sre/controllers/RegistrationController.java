@@ -72,7 +72,7 @@ public class RegistrationController  extends UserService{
         //
 
         stage.setTitle("Owner Home");
-        stage.setScene(new Scene(root, 800, 500));
+        stage.setScene(new Scene(root, 650, 500));
         stage.show();
     }
 
