@@ -2,15 +2,15 @@ package org.loose.fis.sre.exceptions;
 
 public class AdAlreadyExistsException extends Exception
 {
-    private String username;
+    private String nume_proprietate;
 
-    public AdAlreadyExistsException(String username)
+    public AdAlreadyExistsException(String nume_proprietate)
     {
         super("Ad already exists");
-        this.username = username;
+        this.nume_proprietate = nume_proprietate;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNume_proprietate() {
+        return nume_proprietate;
     }
 }

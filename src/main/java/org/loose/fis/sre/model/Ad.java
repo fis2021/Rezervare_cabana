@@ -30,23 +30,6 @@ public class Ad
 
     public Ad() {
     }
-/*
-    public SimpleStringProperty nume_proprietarProperty() {
-        return nume_proprietar;
-    }
-
-    public SimpleStringProperty Nume_proprietateProperty() {
-        return lastName;
-    }
-
-    public SimpleStringProperty LocatieProperty() {
-        return email;
-    }
-
-    public SimpleStringProperty PretProperty() {
-        return email;
-    }
-*/
     public String getNume_proprietar() {
         return nume_proprietar;
     }
