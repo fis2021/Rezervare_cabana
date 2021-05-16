@@ -9,20 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
-import org.loose.fis.sre.model.Ad;
 import org.loose.fis.sre.model.Review;
-import org.loose.fis.sre.services.AdService;
-import org.loose.fis.sre.services.UserService;
 import javafx.scene.control.TextField;
 import org.loose.fis.sre.services.ReviewService;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class ReviewsController extends ReviewService implements Initializable
-{
+public class ReviewsController extends ReviewService implements Initializable {
     @FXML
     public TextField Nume_proprietate;
     @FXML
@@ -44,24 +35,24 @@ public class ReviewsController extends ReviewService implements Initializable
     public void populateTableReviews(String proprietate_cautata) {
         ObservableList<Review> data2 = table.getItems();
         {
-                for (int i = 0; i < reviewsList.size(); i++) {
-                    if(reviewsList.get(i).getNume_proprietate().equals(proprietate_cautata))
-                        data2.add(new Review(reviewsList.get(i).getNume_proprietate(),
-                                            reviewsList.get(i).getNume_autor(),
-                                            reviewsList.get(i).getText_review(),
-                                            reviewsList.get(i).getDate()
-                                )
-                                
-                        );
-                }
+            for (int i = 0; i < reviewsList.size(); i++) {
+                if (reviewsList.get(i).getNume_proprietate().equals(proprietate_cautata))
+                    data2.add(new Review(reviewsList.get(i).getNume_proprietate(),
+                                    reviewsList.get(i).getNume_autor(),
+                                    reviewsList.get(i).getText_review(),
+                                    reviewsList.get(i).getDate()
+                            )
+                    );
+            }
         }
 
-        final Callback<TableColumn<Review,String>, TableCell<Review,String>> WRAPPING_CELL_FACTORY =
-                new Callback<TableColumn<Review,String>, TableCell<Review,String>>() {
-
-                    @Override public TableCell<Review,String> call(TableColumn<Review,String> param) {
-                        TableCell<Review,String> tableCell = new TableCell<Review,String>() {
-                            @Override protected void updateItem(String item, boolean empty) {
+        final Callback<TableColumn<Review, String>, TableCell<Review, String>> WRAPPING_CELL_FACTORY =
+                new Callback<TableColumn<Review, String>, TableCell<Review, String>>() {
+                    @Override
+                    public TableCell<Review, String> call(TableColumn<Review, String> param) {
+                        TableCell<Review, String> tableCell = new TableCell<Review, String>() {
+                            @Override
+                            protected void updateItem(String item, boolean empty) {
                                 if (item == getItem()) return;
 
                                 super.updateItem(item, empty);
@@ -74,9 +65,9 @@ public class ReviewsController extends ReviewService implements Initializable
                                     Label l = new Label(item);
                                     l.setWrapText(true);
                                     VBox box = new VBox(l);
-                                    l.heightProperty().addListener((observable,oldValue,newValue)-> {
-                                        box.setPrefHeight(newValue.doubleValue()+7);
-                                        Platform.runLater(()->this.getTableRow().requestLayout());
+                                    l.heightProperty().addListener((observable, oldValue, newValue) -> {
+                                        box.setPrefHeight(newValue.doubleValue() + 7);
+                                        Platform.runLater(() -> this.getTableRow().requestLayout());
                                     });
                                     super.setGraphic(box);
                                 }
@@ -85,7 +76,6 @@ public class ReviewsController extends ReviewService implements Initializable
                         return tableCell;
                     }
                 };
-
         textReview.setCellFactory(tc -> {
             TableCell<Review, String> cell = new TableCell<>();
             Text text = new Text();
@@ -93,12 +83,12 @@ public class ReviewsController extends ReviewService implements Initializable
             cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
             text.wrappingWidthProperty().bind(textReview.widthProperty());
             text.textProperty().bind(cell.itemProperty());
-            return cell ;
+            return cell;
         });
 
-        Date.setStyle( "-fx-alignment: CENTER;");
-        Nr.setStyle( "-fx-alignment: CENTER;");
-        nume_autor.setStyle( "-fx-alignment: CENTER;");
+        Date.setStyle("-fx-alignment: CENTER;");
+        Nr.setStyle("-fx-alignment: CENTER;");
+        nume_autor.setStyle("-fx-alignment: CENTER;");
 
         Nr.setCellFactory(col -> new TableCell<Task, String>() {
             @Override
@@ -107,7 +97,7 @@ public class ReviewsController extends ReviewService implements Initializable
                 if (isEmpty() || index < 0) {
                     setText(null);
                 } else {
-                    setText(Integer.toString(index+1));
+                    setText(Integer.toString(index + 1));
                 }
             }
         });

@@ -1,6 +1,5 @@
 package org.loose.fis.sre.services;
 
-import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.loose.fis.sre.exceptions.NoPasswordException;
@@ -17,18 +16,8 @@ class UserServiceTest {
 
     public static final String OWNER = "Owner";
 
-    @BeforeAll
-    static void beforeAll() {
-        System.out.println("Before Class");
-    }
-
-    @AfterAll
-    static void afterAll() {
-        System.out.println("After Class");
-    }
-
-    @BeforeAll
-    static void setUp() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-rezervare-cabana";
         FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
         FileSystemService.initDirectory();
@@ -37,7 +26,7 @@ class UserServiceTest {
 
     @AfterEach
     void tearDown() {
-        System.out.println("After each");
+        UserService.closeDatabase();
     }
 
 

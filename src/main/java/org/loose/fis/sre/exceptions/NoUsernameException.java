@@ -2,7 +2,7 @@ package org.loose.fis.sre.exceptions;
 
 public class NoUsernameException extends Exception {
 
-    private String username;
+    private final String username;
 
     public NoUsernameException(String username) {
         super("Error : No username !");

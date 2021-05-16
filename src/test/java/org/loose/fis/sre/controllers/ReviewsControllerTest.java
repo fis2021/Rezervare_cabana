@@ -5,22 +5,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import org.apache.commons.io.FileSystem;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.loose.fis.sre.model.User;
-import org.loose.fis.sre.model.Review;
 import org.loose.fis.sre.services.*;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-
-import java.io.File;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.testfx.assertions.api.Assertions.assertThat;
 
 @ExtendWith(ApplicationExtension.class)
 
@@ -114,7 +107,7 @@ class ReviewsControllerTest {
         robot.clickOn("#role_css").clickOn("Client");
         robot.clickOn("#registerbutton_css");
         robot.clickOn("#loginbutton_css");
-        robot.clickOn("#searchtorentbutton_css");
+        robot.clickOn("#searchToRentButton_css");
         robot.clickOn(NUME_PROPRIETATE);
         robot.clickOn("#rentbutton_css");
         robot.clickOn("#email_rent_css");

@@ -2,31 +2,20 @@ package org.loose.fis.sre.controllers;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
-import org.loose.fis.sre.exceptions.NoPasswordException;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.Renter;
-import org.loose.fis.sre.services.AdService;
-import org.loose.fis.sre.services.UserService;
 import org.loose.fis.sre.services.RenterService;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Date;
 import java.time.format.DateTimeFormatter;
 
 public class RentController extends RenterService implements Initializable {
@@ -54,28 +43,21 @@ public class RentController extends RenterService implements Initializable {
 
     public boolean checkIfPropertyRented = false;
 
-    public boolean checkForEmptyFields()
-    {
-        if ((nume_proprietate.getText().equals(""))||(full_name.getText().equals(""))||(email.getText().equals("")))
-        {
+    public boolean checkForEmptyFields() {
+        if ((nume_proprietate.getText().equals("")) || (full_name.getText().equals("")) || (email.getText().equals(""))) {
             rentingMessage.setText("Error: There are some incomplete fields !");
             return true;
-        }
-        else if (over_18.isSelected()==false)
-        {
+        } else if (over_18.isSelected() == false) {
             rentingMessage.setText("Error: You must be over 18 in order to rent a property !");
             return true;
-        }
-        else if (checkIfDateAvailable()==false)
-        {
+        } else if (checkIfDateAvailable() == false) {
             rentingMessage.setText("Error: The selected date interval is nod available !");
             return true;
-        }
-        else if (isDateCorrect(data_parser(data_final),data_parser(data_inceput))==false){
+        } else if (isDateCorrect(data_parser(data_final), data_parser(data_inceput)) == false) {
             rentingMessage.setText("Error: Nu putem merge in trecut");
             return true;
         }
-        return false ;
+        return false;
     }
 
     public void getClientNameText_as_Renter(String clientName) {
@@ -86,90 +68,68 @@ public class RentController extends RenterService implements Initializable {
         full_name.setText(Pret);
     }
 
-    public void closeStageAfterRentButtonPressed()
-    {
+    public void closeStageAfterRentButtonPressed() {
         Stage stage = (Stage) RentButton.getScene().getWindow();
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
-        delay.setOnFinished( event -> stage.close() );
+        delay.setOnFinished(event -> stage.close());
         delay.play();
     }
-    public String data_parser(DatePicker data){
-        String data_f= data.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+    public String data_parser(DatePicker data) {
+        String data_f = data.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         return data_f;
     }
 
-    public int Data1_minus_Data2(String data_final, String data_inceput)
-    {
+    public int Data1_minus_Data2(String data_final, String data_inceput) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data1 = LocalDate.parse(data_inceput,formatter);
-        LocalDate data2 = LocalDate.parse(data_final,formatter);
-        Period diff = Period.between(data1,data2);
+        LocalDate data1 = LocalDate.parse(data_inceput, formatter);
+        LocalDate data2 = LocalDate.parse(data_final, formatter);
+        Period diff = Period.between(data1, data2);
         return diff.getDays();
     }
 
-    public boolean isDateCorrect(String data_final,String data_inceput)
-    {
-        int diff=Data1_minus_Data2(data_final,data_inceput);
-        if(diff<1)
-            return false;
-        return true;
+    public boolean isDateCorrect(String data_final, String data_inceput) {
+        int diff = Data1_minus_Data2(data_final, data_inceput);
+        return diff >= 1;
     }
 
-    private List<Renter> ListOfRenters=  getAllRenters() ;
-    private boolean checkIfDateAvailable()
-    {
+    private final List<Renter> ListOfRenters = getAllRenters();
+
+    private boolean checkIfDateAvailable() {
 
         ArrayList<Boolean> Disponibilitate = new ArrayList<>();
-        for(int i = 0 ; i < ListOfRenters.size() ; i ++)
-        {
+        for (int i = 0; i < ListOfRenters.size(); i++) {
             String data_aleasa1 = data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             String data_aleasa2 = data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             String data_bd1 = ListOfRenters.get(i).getData_inceput();   // data din baza de date
             String data_bd2 = ListOfRenters.get(i).getData_final();
-
-            //System.out.println(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            if(ListOfRenters.get(i).getNume_proprietate().equals(nume_proprietate.getText())&&(data_bd1 != null)&&(data_bd2 != null))
-            {
-                if(!(((Data1_minus_Data2(data_bd1,data_aleasa1)>0)
-                        &&(Data1_minus_Data2(data_bd2,data_aleasa1)>0))
-                        ||((Data1_minus_Data2(data_bd1,data_aleasa2)<0)
-                        &&(Data1_minus_Data2(data_bd2,data_aleasa2)<0))))
-                {
+            if (ListOfRenters.get(i).getNume_proprietate().equals(nume_proprietate.getText()) && (data_bd1 != null) && (data_bd2 != null)) {
+                if (!(((Data1_minus_Data2(data_bd1, data_aleasa1) > 0)
+                        && (Data1_minus_Data2(data_bd2, data_aleasa1) > 0))
+                        || ((Data1_minus_Data2(data_bd1, data_aleasa2) < 0)
+                        && (Data1_minus_Data2(data_bd2, data_aleasa2) < 0)))) {
                     Disponibilitate.add(Boolean.FALSE);
-                    //Disponibilitate.get(i).toString();
                 }
             }
 
         }
-        System.out.println(Disponibilitate.toString());
-        if(Disponibilitate.contains(Boolean.FALSE))
-        {
-            return false;
-        }
-        else
-            return true;
+        return !Disponibilitate.contains(Boolean.FALSE);
     }
 
-    public void handleRentingAction()
-    {
-        if (!checkForEmptyFields())
-        {
+    public void handleRentingAction() {
+        if (!checkForEmptyFields()) {
 
-                RenterService.addRenter(nume_proprietate.getText(),full_name.getText(), email.getText(), phone.getText(), over_18.isSelected(),data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ,data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),Integer.parseInt(pret_noapte.getText()));
-                rentingMessage.setText("Rental process complete!");
-                checkIfPropertyRented = true ;
-                closeStageAfterRentButtonPressed();
+            RenterService.addRenter(nume_proprietate.getText(), full_name.getText(), email.getText(), phone.getText(), over_18.isSelected(), data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), Integer.parseInt(pret_noapte.getText()));
+            rentingMessage.setText("Rental process complete!");
+            checkIfPropertyRented = true;
+            closeStageAfterRentButtonPressed();
         }
-        //else
-            //rentingMessage.setText("Error: There are some incomplete fields !");
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         nume_proprietate.setText(initializareNume_proprietate());
         pret_noapte.setText(initializarePret_noapte());
-        ///pret_noapte.setEditable(false);
     }
 
 }

@@ -3,7 +3,6 @@ package org.loose.fis.sre.services;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.Ad;
 
 import java.io.IOException;

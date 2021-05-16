@@ -30,22 +30,21 @@ public class RentDetailsController extends RenterService implements Initializabl
     public Text pret_sejur_details;
 
 
-
-    public void setTextFields(String nume_proprietate,String nume_chirias){
+    public void setTextFields(String nume_proprietate, String nume_chirias) {
         ObjectRepository<Renter> RenterRepository = RenterService.getDatabase();
         ObjectRepository<Ad> AdRepository = AdService.getAds();
-        for(Renter renter : RenterRepository.find()){
-            if(Objects.equals(nume_proprietate,renter.getNume_proprietate()) && Objects.equals(nume_chirias,renter.getFull_name())){
+        for (Renter renter : RenterRepository.find()) {
+            if (Objects.equals(nume_proprietate, renter.getNume_proprietate()) && Objects.equals(nume_chirias, renter.getFull_name())) {
                 nume_proprietate_details.setText(renter.getNume_proprietate());
-                for(Ad ad : AdRepository.find()){
-                    if(Objects.equals(renter.getNume_proprietate(),ad.getNume_proprietate()))
+                for (Ad ad : AdRepository.find()) {
+                    if (Objects.equals(renter.getNume_proprietate(), ad.getNume_proprietate()))
                         nume_proprietar_details.setText(ad.getNume_proprietar());
-                        locatie_details.setText(ad.getLocatie());
+                    locatie_details.setText(ad.getLocatie());
                 }
                 data_initiala_details.setText(renter.getData_inceput());
                 data_finala_details.setText(renter.getData_final());
-                nr_nopti_details.setText(renter.getNr_nopti()+"");
-                pret_sejur_details.setText(renter.getPret_sejur()+"");
+                nr_nopti_details.setText(renter.getNr_nopti() + "");
+                pret_sejur_details.setText(renter.getPret_sejur() + "");
             }
         }
     }
