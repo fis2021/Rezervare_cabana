@@ -7,10 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
-import org.loose.fis.sre.exceptions.USERAlreadyExistsException;
-import org.loose.fis.sre.exceptions.NoRoleSelectedException;
-import org.loose.fis.sre.exceptions.NoPasswordException;
+import org.loose.fis.sre.exceptions.*;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -22,25 +19,30 @@ import java.util.Objects;
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class UserService {
-
+    private static Nitrite database;
     private static ObjectRepository<User> userRepository;
 
     public static void initDatabase() {
         //FileSystemService.initDirectory();
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(getPathToFile("rezervare-cabana.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
     }
 
+    public static void closeDatabase(){
+        database.close();
+    }
     public static void addUser(String username, String password, String role)
-            throws UsernameAlreadyExistsException, NoRoleSelectedException, NoPasswordException
+            throws UsernameAlreadyExistsException, NoRoleSelectedException, NoPasswordException , NoUsernameException
     {
         if ((!Objects.equals(role, "Client"))&&(!Objects.equals(role, "Owner")))
             throw new NoRoleSelectedException(username);
         else if (password.equals(""))
             throw new NoPasswordException(username) ;
+        else if(username.equals(""))
+            throw new NoUsernameException(username);
         else
         {
             checkUserDoesNotAlreadyExist(username);

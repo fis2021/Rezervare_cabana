@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.loose.fis.sre.exceptions.NoPasswordException;
 import org.loose.fis.sre.exceptions.NoRoleSelectedException;
+import org.loose.fis.sre.exceptions.NoUsernameException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.User;
 
@@ -17,6 +18,7 @@ import java.nio.file.NoSuchFileException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.testfx.assertions.api.Assertions.assertThat;
+
 
 class UserServiceTest {
 
@@ -60,7 +62,7 @@ class UserServiceTest {
 
     @Test
     @DisplayName("User is successfully persisted to Database")
-    void testUserIsAddedToDatabase() throws UsernameAlreadyExistsException, NoPasswordException, NoRoleSelectedException {
+    void testUserIsAddedToDatabase() throws UsernameAlreadyExistsException, NoPasswordException, NoRoleSelectedException, NoUsernameException {
         //UserService.initDatabase();
         UserService.addUser(OWNER, OWNER, OWNER);
         assertThat(UserService.getAllUsers()).isNotEmpty();

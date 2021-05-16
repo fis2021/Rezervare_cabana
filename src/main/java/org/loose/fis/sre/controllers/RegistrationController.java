@@ -9,10 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.loose.fis.sre.exceptions.USERAlreadyExistsException;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
-import org.loose.fis.sre.exceptions.NoRoleSelectedException;
-import org.loose.fis.sre.exceptions.NoPasswordException;
+import org.loose.fis.sre.exceptions.*;
 import org.loose.fis.sre.services.UserService;
 
 import java.io.IOException;
@@ -41,6 +38,10 @@ public class RegistrationController  extends UserService{
         {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
+        }
+        catch ( NoUsernameException e)
+        {
+            registrationMessage.setText(e.getMessage());
         }
         catch (NoPasswordException e)
         {
