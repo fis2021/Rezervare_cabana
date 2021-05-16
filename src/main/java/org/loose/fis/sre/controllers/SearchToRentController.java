@@ -11,17 +11,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.dizitart.no2.objects.ObjectRepository;
-import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.sre.model.Ad;
-import org.loose.fis.sre.model.Renter;
 import org.loose.fis.sre.services.AdService;
-import org.loose.fis.sre.services.RenterService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class SearchToRentController extends AdService implements Initializable {
     public TableView<Ad> tableView ;
@@ -74,49 +70,33 @@ public class SearchToRentController extends AdService implements Initializable {
     }
 
 
-    private ObjectRepository<Renter> RenterRepository = RenterService.getDatabase();
-    public List<Renter> results = RenterRepository.find(ObjectFilters.ALL).toList();
-    public List<Ad> rezultate = new ArrayList<>(rez);
+
     public void populateTable() {
         //System.out.println(rez.get(0).getLocatie());
         //getData();
         ObservableList<Ad> data2 = tableView.getItems();
-            for (int i = 0; i < rez.size(); i++) {
 
-                    data2.add(new Ad(rez.get(i).getNume_proprietar(),
-                                    rez.get(i).getNume_proprietate(),
-                                    rez.get(i).getLocatie(),
-                                    rez.get(i).getPret()
-                            )
-                    );
-                for (int j = 0 ; j < results.size() ; j ++ )
-                {
-                    if (((rez.get(i).getNume_proprietate()) != null) && ((rez.get(i).getNume_proprietate()).equals(results.get(j).getNume_proprietate())))
-                    {
-                        data2.remove(new Ad(rez.get(i).getNume_proprietar(),
-                                        rez.get(i).getNume_proprietate(),
-                                        rez.get(i).getLocatie(),
-                                        rez.get(i).getPret()
-                                )
-                        );
-                        if(i<=rezultate.size())
-                            rezultate.remove(i);
-                    }
+        //ObservableList<Integer> dat = tableView.getItems();
+        for (int i = 0; i < rez.size(); i++) {
+            data2.add(new Ad(rez.get(i).getNume_proprietar(),
+                            rez.get(i).getNume_proprietate(),
+                            rez.get(i).getLocatie(),
+                            rez.get(i).getPret()
+                    )
+            );
+            //id.setText( String.valueOf(i+1) );
+        }
+        id.setCellFactory(col -> new TableCell<Task, String>() {
+            @Override
+            public void updateIndex(int index) {
+                super.updateIndex(index);
+                if (isEmpty() || index < 0) {
+                    setText(null);
+                } else {
+                    setText(Integer.toString(index + 1));
                 }
-                //id.setText( String.valueOf(i+1) );
             }
-            id.setCellFactory(col -> new TableCell<Task, String>() {
-                @Override
-                public void updateIndex(int index) {
-                    super.updateIndex(index);
-                    if (isEmpty() || index < 0) {
-                        setText(null);
-                    } else {
-                        setText(Integer.toString(index + 1));
-                    }
-                }
-            });
-
+        });
     }
 
 
@@ -162,12 +142,12 @@ public class SearchToRentController extends AdService implements Initializable {
     {
         ObservableList<Ad> Ads = tableView.getItems();
         tableView.getItems().clear();
-        for (int i = 0; i < rezultate.size(); i++) {
-            if(rezultate.get(i).getNume_proprietate().toLowerCase().contains(nume_proprietatateField.getText().toLowerCase())){
-                Ads.add(new Ad(rezultate.get(i).getNume_proprietar(),
-                                rezultate.get(i).getNume_proprietate(),
-                                rezultate.get(i).getLocatie(),
-                                rezultate.get(i).getPret()
+        for (int i = 0; i < rez.size(); i++) {
+            if(rez.get(i).getNume_proprietate().toLowerCase().contains(nume_proprietatateField.getText().toLowerCase())){
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
                         )
                 );
             }
@@ -191,12 +171,12 @@ public class SearchToRentController extends AdService implements Initializable {
     {
         ObservableList<Ad> Ads = tableView.getItems();
         tableView.getItems().clear();
-        for (int i = 0; i < rezultate.size(); i++) {
-            if(rezultate.get(i).getLocatie().toLowerCase().contains(locatieField.getText().toLowerCase())){
-                Ads.add(new Ad(rezultate.get(i).getNume_proprietar(),
-                                rezultate.get(i).getNume_proprietate(),
-                                rezultate.get(i).getLocatie(),
-                                rezultate.get(i).getPret()
+        for (int i = 0; i < rez.size(); i++) {
+            if(rez.get(i).getLocatie().toLowerCase().contains(locatieField.getText().toLowerCase())){
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
                         )
                 );
             }
@@ -219,12 +199,12 @@ public class SearchToRentController extends AdService implements Initializable {
     {
         ObservableList<Ad> Ads = tableView.getItems();
         tableView.getItems().clear();
-        for (int i = 0; i < rezultate.size(); i++) {
-            if(!rezultate.get(i).getPret().equals("")&&(Integer.parseInt(rezultate.get(i).getPret())<=Integer.parseInt(pretField.getText())) ){
-                Ads.add(new Ad(rezultate.get(i).getNume_proprietar(),
-                                rezultate.get(i).getNume_proprietate(),
-                                rezultate.get(i).getLocatie(),
-                                rezultate.get(i).getPret()
+        for (int i = 0; i < rez.size(); i++) {
+            if(!rez.get(i).getPret().equals("")&&(Integer.parseInt(rez.get(i).getPret())<=Integer.parseInt(pretField.getText())) ){
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
                         )
                 );
             }
@@ -247,11 +227,11 @@ public class SearchToRentController extends AdService implements Initializable {
     {
         ObservableList<Ad> Ads = tableView.getItems();
         tableView.getItems().clear();
-        for (int i = 0; i < rezultate.size(); i++) {
-                Ads.add(new Ad(rezultate.get(i).getNume_proprietar(),
-                                rezultate.get(i).getNume_proprietate(),
-                                rezultate.get(i).getLocatie(),
-                                rezultate.get(i).getPret()
+        for (int i = 0; i < rez.size(); i++) {
+                Ads.add(new Ad(rez.get(i).getNume_proprietar(),
+                                rez.get(i).getNume_proprietate(),
+                                rez.get(i).getLocatie(),
+                                rez.get(i).getPret()
                         )
                 );
 

@@ -37,6 +37,12 @@ public class RenterService extends SearchToRentController {
         RenterRepository.insert(new Renter(nume_proprietate, full_name, email, phone, over_18,data_inceput,data_final,pret_noapte));
     }
 
+
+    public static List<Renter> getAllRenters()
+    {
+        return RenterRepository.find().toList();
+    }
+
     protected static void checkRenterDoesNotAlreadyExist(String full_name) throws RenterAlreadyExistsException {
         for (Renter renter : RenterRepository.find()) {
             if (Objects.equals(full_name, renter.getFull_name()))

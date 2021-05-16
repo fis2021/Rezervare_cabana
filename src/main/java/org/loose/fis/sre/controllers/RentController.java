@@ -16,12 +16,16 @@ import org.loose.fis.sre.exceptions.AdAlreadyExistsException;
 import org.loose.fis.sre.exceptions.NoPasswordException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.exceptions.RenterAlreadyExistsException;
+import org.loose.fis.sre.model.Renter;
 import org.loose.fis.sre.services.AdService;
 import org.loose.fis.sre.services.UserService;
 import org.loose.fis.sre.services.RenterService;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Date;
 import java.time.format.DateTimeFormatter;
@@ -63,6 +67,11 @@ public class RentController extends RenterService implements Initializable {
             rentingMessage.setText("Error: You must be over 18 in order to rent a property !");
             return true;
         }
+        else if (checkIfDateAvailable()==false)
+        {
+            rentingMessage.setText("Error: The selected date interval is nod available !");
+            return true;
+        }
         return false ;
     }
 
@@ -80,6 +89,46 @@ public class RentController extends RenterService implements Initializable {
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished( event -> stage.close() );
         delay.play();
+    }
+
+    public int Diff_date(String data_inceput,String data_final)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data1 = LocalDate.parse(data_inceput,formatter);
+        LocalDate data2 = LocalDate.parse(data_final,formatter);
+        Period diff = Period.between(data1,data2);
+        return diff.getDays();
+    }
+
+    private List<Renter> ListOfRenters=  getAllRenters() ;
+    private boolean checkIfDateAvailable()
+    {
+
+        ArrayList<Boolean> Disponibilitate = new ArrayList<>();
+        for(int i = 0 ; i < ListOfRenters.size() ; i ++)
+        {
+
+            System.out.println(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            if(ListOfRenters.get(i).getNume_proprietate().equals(nume_proprietate.getText())&&(ListOfRenters.get(i).getData_inceput() != null)&&(ListOfRenters.get(i).getData_final() != null))
+            {
+                if(((Diff_date(data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_inceput())<0)
+                        &&(Diff_date(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_inceput())<0))
+                        ||((Diff_date(data_inceput.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_final())>0)
+                        &&(Diff_date(data_final.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),ListOfRenters.get(i).getData_final())>0)))
+                {
+                    Disponibilitate.add(Boolean.FALSE);
+                    //Disponibilitate.get(i).toString();
+                }
+            }
+
+        }
+        System.out.println(Disponibilitate.toString());
+        if(Disponibilitate.contains(Boolean.FALSE))
+        {
+            return false;
+        }
+        else
+            return true;
     }
 
     public void handleRentingAction()
@@ -107,7 +156,6 @@ public class RentController extends RenterService implements Initializable {
     {
         nume_proprietate.setText(initializareNume_proprietate());
         pret_noapte.setText(initializarePret_noapte());
-        pret_noapte.setEditable(false);
     }
 
 }

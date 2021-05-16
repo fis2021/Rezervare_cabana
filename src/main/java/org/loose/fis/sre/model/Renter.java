@@ -59,6 +59,7 @@ public class Renter
         return diff.getDays();
     }
 
+
     public String getNume_proprietate() {
         return nume_proprietate;
     }
