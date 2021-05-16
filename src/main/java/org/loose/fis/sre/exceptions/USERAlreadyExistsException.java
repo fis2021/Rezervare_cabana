@@ -2,7 +2,7 @@ package org.loose.fis.sre.exceptions;
 
 public class USERAlreadyExistsException extends Exception {
 
-    private String username;
+    private final String username;
 
     public USERAlreadyExistsException(String username) {
         super("User already exists");

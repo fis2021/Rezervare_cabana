@@ -1,6 +1,5 @@
 package org.loose.fis.sre.services;
 
-import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.loose.fis.sre.exceptions.NoPasswordException;
@@ -28,7 +27,6 @@ class UserServiceTest {
     @AfterEach
     void tearDown() {
         UserService.closeDatabase();
-        //System.out.println("After each");
     }
 
 

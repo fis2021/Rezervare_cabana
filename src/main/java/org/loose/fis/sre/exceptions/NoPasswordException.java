@@ -2,7 +2,7 @@ package org.loose.fis.sre.exceptions;
 
 public class NoPasswordException extends Exception {
 
-    private String username;
+    private final String username;
 
     public NoPasswordException(String username) {
         super("Error : No password !");

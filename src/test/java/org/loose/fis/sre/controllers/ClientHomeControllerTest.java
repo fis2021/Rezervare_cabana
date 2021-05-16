@@ -10,17 +10,11 @@ import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.loose.fis.sre.controllers.ClientHomeController;
 import org.loose.fis.sre.model.Ad;
 import org.loose.fis.sre.services.*;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
 @ExtendWith(ApplicationExtension.class)
@@ -33,10 +27,6 @@ class ClientHomeControllerTest
     static void setUp() throws Exception {
         FileSystemService.setApplicationFolder(".test-cabana-rezervare");
         FileSystemService.initDirectory();
-
-        //System.gc();
-        //Thread.sleep(2000);
-
         FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
 
         AdService.initDatabase();
@@ -44,20 +34,6 @@ class ClientHomeControllerTest
         ReviewService.initDatabase();
     }
 
-/*
-    @BeforeEach
-    void setUp2() throws IOException, AdAlreadyExistsException {
-        FileSystemService.APPLICATION_FOLDER=".test-rezervare-cabana";
-        FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
-        FileSystemService.initDirectory();
-        //UserService.initDatabase();
-        AdService.initDatabase();
-        RenterService.initDatabase();
-
-        //AdService.addAd("ion","cab1","fd","54");
-
-    }
-*/
     @AfterEach
     void aftereach() throws InterruptedException {
         Thread.sleep(1000);
@@ -73,24 +49,14 @@ class ClientHomeControllerTest
 
     public int index ;
     @Start
-    void start(Stage PrimaryStage) throws Exception, IOException
-    {
+    void start(Stage PrimaryStage) throws Exception {
 
         Stage stage = new Stage();
-        //FXMLLoader fxmlLoader = new FXMLLoader();
-
-        //Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("ClientHome.fxml")) ;
-
-        //
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("ClientHome.fxml"));
         Pane root = fxmlLoader.load();
         ClientHomeController controller = fxmlLoader.getController() ;
         controller.passClientNameText(USERNAME);
-        //controller.populateTable();
-        //
-        //robot.lookup(controller.tableView.getSelectionModel().selectFirst());
         controller.tableView.getItems().add(new Ad("PROPRIETAR","PROPRIETATE","LOCATIE","0000"));
-        //controller.tableView.getSelectionModel().selectFirst();
         stage.setTitle("Client Home");
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
@@ -103,13 +69,8 @@ class ClientHomeControllerTest
         robot.moveTo("#id_css");
         robot.moveBy(50,30);
         robot.clickOn();
-        Thread.sleep(200);
-        //ObservableList<Window> stages = Stage.getWindows();
-        //System.out.println(stages.get(1).hasProperties(TitledPane.));
-        //Stage stage = (Stage) stages.get(1);
-        //System.out.println(stage.getTitle());
-        //System.out.println(stages.stream().toList().get(1).toString());
-        //assertEquals(stage.getTitle(),"Search to Rent",);
+        Thread.sleep(700);
+        robot.push(KeyCode.ALT,KeyCode.F4);
     }
 
     @Test

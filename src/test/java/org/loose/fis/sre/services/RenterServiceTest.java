@@ -2,14 +2,9 @@ package org.loose.fis.sre.services;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
-import org.loose.fis.sre.exceptions.*;
 import org.loose.fis.sre.model.Renter;
-import org.loose.fis.sre.model.User;
-
 import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RenterServiceTest {
     public static final String NUME_PROPRIETATE="Owner";

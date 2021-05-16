@@ -2,7 +2,7 @@ package org.loose.fis.sre.exceptions;
 
 public class NoRoleSelectedException extends Exception {
 
-    private String username;
+    private final String username;
 
     public NoRoleSelectedException(String username) {
         super("Error : No Role Selected !");

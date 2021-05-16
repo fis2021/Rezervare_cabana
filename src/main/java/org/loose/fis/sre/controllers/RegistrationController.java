@@ -14,7 +14,7 @@ import org.loose.fis.sre.services.UserService;
 
 import java.io.IOException;
 
-public class RegistrationController  extends UserService{
+public class RegistrationController extends UserService {
 
     @FXML
     private Text registrationMessage;
@@ -34,25 +34,16 @@ public class RegistrationController  extends UserService{
 
     @FXML
     public void handleRegisterAction() {
-        try
-        {
+        try {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
-        }
-        catch ( NoUsernameException e)
-        {
+        } catch (NoUsernameException e) {
             registrationMessage.setText(e.getMessage());
-        }
-        catch (NoPasswordException e)
-        {
+        } catch (NoPasswordException e) {
             registrationMessage.setText(e.getMessage());
-        }
-        catch (NoRoleSelectedException e)
-        {
+        } catch (NoRoleSelectedException e) {
             registrationMessage.setText(e.getMessage());
-        }
-        catch (UsernameAlreadyExistsException e)
-        {
+        } catch (UsernameAlreadyExistsException e) {
             registrationMessage.setText(e.getMessage());
         }
     }
@@ -60,18 +51,13 @@ public class RegistrationController  extends UserService{
     @FXML
     public void switchStage_to_Owner_Home() throws IOException {
         Stage stage = new Stage();
-        //FXMLLoader fxmlLoader = new FXMLLoader();
-
-        //Pane root = fxmlLoader.load(getClass().getClassLoader().getResource("OwnerHome.fxml")) ;
-
         //
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("OwnerHome.fxml"));
         Pane root = fxmlLoader.load();
-        OwnerHomeController controller = fxmlLoader.getController() ;
+        OwnerHomeController controller = fxmlLoader.getController();
         controller.passOwnerNameText(usernameField.getText());
         controller.populateTable();
         //
-
         stage.setTitle("Owner Home");
         stage.setScene(new Scene(root, 650, 500));
         stage.show();
@@ -79,18 +65,13 @@ public class RegistrationController  extends UserService{
 
     public void switchStage_to_Client_Home() throws IOException {
         Stage stage = new Stage();
-        //FXMLLoader fxmlLoader = new FXMLLoader();
-
-        //Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("ClientHome.fxml")) ;
-
         //
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("ClientHome.fxml"));
         Pane root = fxmlLoader.load();
-        ClientHomeController controller = fxmlLoader.getController() ;
+        ClientHomeController controller = fxmlLoader.getController();
         controller.passClientNameText(usernameField.getText());
         controller.populateTable();
         //
-
         stage.setTitle("Client Home");
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
@@ -99,33 +80,16 @@ public class RegistrationController  extends UserService{
 
     @FXML
     public void handleLoginAction() throws IOException {
-        /*try
-        {
-            UserService.checkUserDoesNotAlreadyExist(usernameField.getText());
-            loginMessage.setText("There is no account with this username !");
+        try {
+            UserService.checkUSERDoesNotAlreadyExist(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+            loginMessage.setText("Incorrect credentials !");
+        } catch (USERAlreadyExistsException ex) {
+
+            loginMessage.setText("Login successfull!");
+            if (role.getValue().equals("Owner"))
+                switchStage_to_Owner_Home();
+            else if (role.getValue().equals("Client"))
+                switchStage_to_Client_Home();
         }
-        catch (UsernameAlreadyExistsException e)
-        {
-            //loginMessage.setText("Login successfull!");
-            loginMessage.setText("Correct username !");
-            //Thread.sleep(10);
-        */
-            try
-            {
-                UserService.checkUSERDoesNotAlreadyExist(usernameField.getText(), passwordField.getText(), (String) role.getValue());
-                loginMessage.setText("Incorrect credentials !");
-            }
-            catch (USERAlreadyExistsException ex)
-            {
-
-                loginMessage.setText("Login successfull!");
-                if( ((String) role.getValue()).equals("Owner"))
-                    switchStage_to_Owner_Home();
-                else if( ((String) role.getValue()).equals("Client"))
-                    switchStage_to_Client_Home();
-            }
-
-        //}
-
     }
 }
