@@ -43,7 +43,7 @@
     </TableView>
 
     <HBox alignment="bottom_left" spacing="10"  GridPane.columnIndex="1" GridPane.rowIndex="0">
-        <Button onMouseClicked="#handleSearchToRentAction" style="-fx-font: 18 Calibri" text="Search to rent" prefWidth="150" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleSearchToRentAction" id="searchtorentbutton_css" style="-fx-font: 18 Calibri" text="Search to rent" prefWidth="150" textAlignment="CENTER"/>
     </HBox>
 
     <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">

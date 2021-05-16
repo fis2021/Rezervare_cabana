@@ -25,23 +25,10 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 @ExtendWith(ApplicationExtension.class)
 
 
-@Disabled
 class RegistrationTest {
 
     public static final String USERNAME = "usertest";
     public static final String PASSWORD = "parola";
-    @BeforeAll
-    static void setUp() throws Exception {
-        FileSystemService.setApplicationFolder(".test-cabana-rezervare");
-        FileSystemService.initDirectory();
-
-        //System.gc();
-        //Thread.sleep(2000);
-        //FileDeleteStrategy.FORCE.delete(FileSystemService.getApplicationHomeFolder().toFile());
-        FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
-        //Files.delete(FileSystemService.getApplicationHomeFolder());
-        UserService.initDatabase();
-    }
 
 
     @BeforeEach

@@ -22,26 +22,26 @@
 
     <TextField fx:id="full_name" promptText="Your Full Name" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="email" promptText="Email adress" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <TextField fx:id="email" promptText="Email adress" id="email_rent_css" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <TextField fx:id="phone" promptText="Phone Number" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <TextField fx:id="phone" promptText="Phone Number" id="phone_css" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
     <TextField fx:id="pret_noapte" promptText="Pret Noapte" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="5" />
     <TextField fx:id="pret_noapte"  editable="false" mouseTransparent="true" focusTraversable="false"   promptText="Pret Noapte" visible="true" prefWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
 
     <Label text="Over 18" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-    <CheckBox fx:id="over_18" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <CheckBox fx:id="over_18" id="over18_css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
     <Label text="Selectati data inceputului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-    <DatePicker fx:id="data_inceput" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <DatePicker fx:id="data_inceput" id="data_inceput_rent_css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
     <Label text="Selectati data sfarsitului sejurului" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-    <DatePicker fx:id="data_final" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+    <DatePicker fx:id="data_final" id="data_final_rent_css" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
 
     <Text fx:id="rentingMessage" GridPane.halignment="center" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
     <HBox fx:id="RentButton" alignment="bottom_left" spacing="10"  GridPane.columnIndex="0" GridPane.rowIndex="10">
-        <Button onMouseClicked="#handleRentingAction" style="-fx-font: 20 Calibri" text="Rent" prefWidth="100" textAlignment="CENTER"/>
+        <Button onMouseClicked="#handleRentingAction" id="rent_button_confirm_css" style="-fx-font: 20 Calibri" text="Rent" prefWidth="100" textAlignment="CENTER"/>
     </HBox>
 
 
